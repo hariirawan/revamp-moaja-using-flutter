@@ -7,18 +7,18 @@ class HomePage extends StatelessWidget {
     return Container(
       child: Scaffold(
           body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           SizedBox(
             height: MediaQuery.of(context).padding.top,
           ),
-          AppBarUI(),
+          // AppBarUI(),
           Expanded(
               child: SingleChildScrollView(
             child: Container(
               height: MediaQuery.of(context).size.height,
               child: ListView(
                 children: <Widget>[
-                  // SizedBox(height: 80),
                   advertisementList(context),
                   SizedBox(height: 30),
                   Container(
@@ -110,6 +110,33 @@ class HomePage extends StatelessWidget {
                   ),
                   news(context),
                   SizedBox(
+                    height: Themes.marginDefault,
+                  ),
+                  Container(
+                    margin:
+                        EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TitleView(
+                          title: "Baru Bergabung",
+                          subtitle: "Lihat Semua",
+                        ),
+                        SizedBox(height: 7),
+                        Text(
+                            "Yuk cobain menu dan layanan dari merchant terbaru kita",
+                            style: TextStyle(fontSize: 10)),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: Themes.marginDefault,
+                  ),
+                  Column(
+                      children: dataDummy
+                          .map((e) => listMerchent(context, e, dataDummy))
+                          .toList()),
+                  SizedBox(
                     height: 200,
                   ),
                 ],
@@ -118,6 +145,60 @@ class HomePage extends StatelessWidget {
           ))
         ],
       )),
+    );
+  }
+
+  Widget listMerchent(BuildContext context, String e, List dataDummy) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+      child: Column(
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 94,
+                width: 94,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    image: DecorationImage(
+                        image: AssetImage("assets/image/merchant.png"),
+                        fit: BoxFit.cover)),
+              ),
+              SizedBox(width: 19),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("NOS Car Wash", style: TextStyle(fontSize: 14)),
+                  SizedBox(height: 10),
+                  RatingStars(
+                    voteAverage: 4,
+                    starSize: 10,
+                  ),
+                  SizedBox(height: 5),
+                  Container(
+                      width: 150,
+                      child: Text(
+                        "Jl. Bangka Raya No. 5c Kemang, Jakarta Selatan",
+                        maxLines: 2,
+                        overflow: TextOverflow.clip,
+                        style: TextStyle(fontSize: 12),
+                      )),
+                  Text("0.3 Km", style: TextStyle(fontSize: 10)),
+                ],
+              )
+            ],
+          ),
+          (dataDummy.length).toString() == e
+              ? SizedBox()
+              : Container(
+                  margin: EdgeInsets.symmetric(vertical: 15),
+                  child: Divider(
+                    color: Colors.grey,
+                    height: 1,
+                  ))
+        ],
+      ),
     );
   }
 
