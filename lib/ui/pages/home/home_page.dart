@@ -1,151 +1,221 @@
 part of '_home.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final List<String> dataDummy = ["1", "2", "3", "4", "5"];
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Scaffold(
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          SizedBox(
-            height: MediaQuery.of(context).padding.top,
-          ),
-          // AppBarUI(),
-          Expanded(
-              child: SingleChildScrollView(
-            child: Container(
-              height: MediaQuery.of(context).size.height,
-              child: ListView(
-                children: <Widget>[
-                  advertisementList(context),
-                  SizedBox(height: 30),
-                  Container(
-                    child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: menus
-                            .map((e) => Column(
-                                  children: [
-                                    Container(
-                                        width: 50,
-                                        height: 50,
-                                        margin: EdgeInsets.only(bottom: 8),
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: AssetImage(e.icon)))),
-                                    Text(
-                                      e.name,
-                                      style: TextStyle(fontSize: 10),
-                                    )
-                                  ],
-                                ))
-                            .toList()),
-                  ),
-                  SizedBox(height: 30),
-                  Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+    double width = MediaQuery.of(context).size.width;
+    PageController _controller = PageController(
+      initialPage: 0,
+    );
+
+    @override
+    void dispose() {
+      _controller.dispose();
+      super.dispose();
+    }
+
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(10),
+            child: Padding(
+              padding: EdgeInsets.only(
+                  left: Themes.marginDefault,
+                  right: Themes.marginDefault,
+                  bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleView(
-                          title: "Sekitar Anda",
-                          subtitle: "Lihat Semua",
-                        ),
-                        SizedBox(height: 7),
-                        Text("Temukan tempat belanja menarik di sekitar Anda",
-                            style: TextStyle(fontSize: 10)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: Themes.marginDefault),
-                  recomendedList(),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: Themes.marginDefault),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleView(
-                          title: "Kebutuhan Harian",
-                          subtitle: "Lihat Semua",
-                        ),
-                        SizedBox(height: 7),
-                        Text("Temukan tempat belanja menarik di sekitar Anda",
-                            style: TextStyle(fontSize: 10)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: Themes.marginDefault,
-                  ),
-                  dailyNeeds(context),
-                  SizedBox(
-                    height: Themes.marginDefault,
-                  ),
-                  Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: Themes.marginDefault),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleView(
-                          title: "Berita dan Hiburan",
-                          subtitle: "Lihat Semua",
-                        ),
-                        SizedBox(height: 7),
+                      children: <Widget>[
                         Text(
-                            "Berita terbaru membuat kamu akan jadi lebih update",
-                            style: TextStyle(fontSize: 10)),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: Themes.marginDefault,
-                  ),
-                  news(context),
-                  SizedBox(
-                    height: Themes.marginDefault,
-                  ),
-                  Container(
-                    margin:
-                        EdgeInsets.symmetric(horizontal: Themes.marginDefault),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TitleView(
-                          title: "Baru Bergabung",
-                          subtitle: "Lihat Semua",
+                          'Halo, Nunu',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 22,
+                            letterSpacing: 0.27,
+                          ),
                         ),
-                        SizedBox(height: 7),
                         Text(
-                            "Yuk cobain menu dan layanan dari merchant terbaru kita",
-                            style: TextStyle(fontSize: 10)),
+                          'Alamat pengiriman, Jl. Kuningan Barat',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 10,
+                            letterSpacing: 0.2,
+                          ),
+                        ),
                       ],
                     ),
                   ),
-                  SizedBox(
-                    height: Themes.marginDefault,
-                  ),
-                  Column(
-                      children: dataDummy
-                          .map((e) => listMerchent(context, e, dataDummy))
-                          .toList()),
-                  SizedBox(
-                    height: 200,
-                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        width: 35,
+                        height: 35,
+                        decoration: BoxDecoration(
+                            color: Color(0xFFFFEFEF),
+                            borderRadius: BorderRadius.circular(35)),
+                        child: Icon(
+                          Icons.notifications,
+                          color: Color(0xFFF14343),
+                          size: 18,
+                        ),
+                      ),
+                      Positioned(
+                          top: 0.1,
+                          right: 3.0,
+                          child: Container(
+                            height: 14,
+                            width: 14,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: Colors.red),
+                            child: Center(
+                              child: Text("9+",
+                                  style: TextStyle(
+                                      fontSize: 8, color: Colors.white)),
+                            ),
+                          ))
+                    ],
+                  )
                 ],
               ),
             ),
-          ))
-        ],
-      )),
-    );
+          ),
+        ),
+        body: ListView(
+          children: <Widget>[
+            SizedBox(height: 20),
+            advertisementList(context),
+            SizedBox(height: 30),
+            Container(
+              child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: menus
+                      .map((e) => Column(
+                            children: [
+                              Container(
+                                  width: 50,
+                                  height: 50,
+                                  margin: EdgeInsets.only(bottom: 8),
+                                  decoration: BoxDecoration(
+                                      image: DecorationImage(
+                                          image: AssetImage(e.icon)))),
+                              Text(
+                                e.name,
+                                style: TextStyle(fontSize: 10),
+                              )
+                            ],
+                          ))
+                      .toList()),
+            ),
+            SizedBox(height: 30),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleView(
+                    title: "Sekitar Anda",
+                    subtitle: "Lihat Semua",
+                  ),
+                  SizedBox(height: 7),
+                  Text("Temukan tempat belanja menarik di sekitar Anda",
+                      style: TextStyle(fontSize: 10)),
+                ],
+              ),
+            ),
+            SizedBox(height: Themes.marginDefault),
+            recomendedList(),
+            SizedBox(
+              height: 40,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleView(
+                    title: "Kebutuhan Harian",
+                    subtitle: "Lihat Semua",
+                  ),
+                  SizedBox(height: 7),
+                  Text("Temukan tempat belanja menarik di sekitar Anda",
+                      style: TextStyle(fontSize: 10)),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Themes.marginDefault,
+            ),
+            dailyNeeds(context),
+            SizedBox(
+              height: Themes.marginDefault,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleView(
+                    title: "Berita dan Hiburan",
+                    subtitle: "Lihat Semua",
+                  ),
+                  SizedBox(height: 7),
+                  Text("Berita terbaru membuat kamu akan jadi lebih update",
+                      style: TextStyle(fontSize: 10)),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Themes.marginDefault,
+            ),
+            news(context),
+            SizedBox(
+              height: Themes.marginDefault,
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TitleView(
+                    title: "Baru Bergabung",
+                    subtitle: "Lihat Semua",
+                  ),
+                  SizedBox(height: 7),
+                  Text("Yuk cobain menu dan layanan dari merchant terbaru kita",
+                      style: TextStyle(fontSize: 10)),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: Themes.marginDefault,
+            ),
+            Column(
+                children: dataDummy
+                    .map((e) => listMerchent(context, e, dataDummy))
+                    .toList()),
+            SizedBox(
+              height: 64,
+            ),
+          ],
+        ));
   }
 
   Widget listMerchent(BuildContext context, String e, List dataDummy) {
@@ -235,7 +305,11 @@ class HomePage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Ini 53 Tokoh Penerima Bintang Tan..."),
+                        Text(
+                          "Ini 53 Tokoh Penerima Bintang Tan...",
+                          style: Themes.fontBold
+                              .copyWith(fontSize: 12, letterSpacing: 0.2),
+                        ),
                         Container(
                             width: MediaQuery.of(context).size.width - 20 - 20,
                             margin: EdgeInsets.only(top: 6),
@@ -243,6 +317,7 @@ class HomePage extends StatelessWidget {
                               "Presiden Joko Widodo atau Jokowi enganugerahkan tanda jasa dan tanda kehormatan kepada 53 tokoh...",
                               maxLines: 2,
                               overflow: TextOverflow.clip,
+                              style: Themes.fontNormal,
                             ))
                       ],
                     ),
@@ -278,8 +353,7 @@ class HomePage extends StatelessWidget {
                       children: [
                         Text(
                           "Cuci Salju",
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.bold),
+                          style: Themes.fontBold,
                         ),
                         Spacer(),
                         RatingStars(
@@ -291,32 +365,37 @@ class HomePage extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: Themes.marginDefault,
+                      height: 8,
                     ),
                     Text(
-                        "Cuci mobil kamu gak perlu pusing, pasti hemat dan dijamin bersih! Yuk cobain!"),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Rp.5000",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        Spacer(),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Themes.green,
-                              borderRadius: BorderRadius.circular(62)),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 12),
-                          child: Text(
-                            "Pesan Sekarang",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white),
+                      "Cuci mobil kamu gak perlu pusing, pasti hemat dan dijamin bersih! Yuk cobain!",
+                      style: Themes.fontNormal,
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Rp.5000",
+                            style: Themes.fontBold,
                           ),
-                        )
-                      ],
+                          Spacer(),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: Themes.green,
+                                borderRadius: BorderRadius.circular(62)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 14, vertical: 12),
+                            child: Text(
+                              "Pesan Sekarang",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Container(
                         margin: EdgeInsets.symmetric(vertical: 21),
