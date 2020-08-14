@@ -113,11 +113,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             SizedBox(height: 35.59),
-            Row(children: <Widget>[
-              Expanded(child: Divider()),
-              Text("or continue with"),
-              Expanded(child: Divider()),
-            ]),
+            Separator("or continue with"),
             SizedBox(height: 30),
             Row(
               children: [

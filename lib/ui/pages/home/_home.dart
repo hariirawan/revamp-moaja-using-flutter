@@ -1,0 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:mo_aja/model/_model.dart';
+import 'package:mo_aja/ui/widget/_widget.dart';
+import 'package:mo_aja/shared/_shared.dart';
+
+part 'home_page.dart';
