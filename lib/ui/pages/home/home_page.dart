@@ -89,7 +89,8 @@ class _HomePageState extends State<HomePage> {
         body: ListView(
           children: <Widget>[
             SizedBox(height: 20),
-            advertisementList(context),
+            BannerSlid(),
+            // advertisementList(context),
             SizedBox(height: 30),
             Container(
               child: Row(

@@ -23,8 +23,8 @@ class RatingStars extends StatelessWidget {
     List<Widget> widgets = List.generate(
         5,
         (index) => Icon(
-              index < n ? Icons.star : MdiIcons.starOutline,
-              color: color,
+              index < n ? Icons.star : Icons.star,
+              color: index < n ? color : Color(0xFFEDEDED),
               size: starSize,
             ));
 
