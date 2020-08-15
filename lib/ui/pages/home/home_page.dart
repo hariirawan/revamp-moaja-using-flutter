@@ -9,17 +9,6 @@ class _HomePageState extends State<HomePage> {
   final List<String> dataDummy = ["1", "2", "3", "4", "5"];
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    PageController _controller = PageController(
-      initialPage: 0,
-    );
-
-    @override
-    void dispose() {
-      _controller.dispose();
-      super.dispose();
-    }
-
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
