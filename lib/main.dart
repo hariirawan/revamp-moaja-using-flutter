@@ -26,7 +26,18 @@ class Layout extends StatefulWidget {
 class _LayoutState extends State<Layout> {
   int _selectedIndex = 0;
 
-  final _layoutPage = [HomePage()];
+  final _layoutPage = [
+    HomePage(),
+    Acitvity(
+      label: "Aktifitas",
+    ),
+    Acitvity(
+      label: "Keranjang",
+    ),
+    Acitvity(
+      label: "Masuk",
+    ),
+  ];
 
   void _onTabItem(int index) {
     setState(() {
@@ -87,6 +98,19 @@ class _LayoutState extends State<Layout> {
     return Scaffold(
       body: _layoutPage.elementAt(_selectedIndex),
       bottomNavigationBar: _menuNavigation(),
+    );
+  }
+}
+
+class Acitvity extends StatelessWidget {
+  final String label;
+
+  Acitvity({this.label});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Center(child: Text(label)),
     );
   }
 }

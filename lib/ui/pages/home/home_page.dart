@@ -90,7 +90,6 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             SizedBox(height: 20),
             BannerSlid(),
-            // advertisementList(context),
             SizedBox(height: 30),
             Container(
               child: Row(
@@ -463,30 +462,5 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             }));
-  }
-
-  Widget advertisementList(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-    return SizedBox(
-      height: 150,
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: dataDummy.length,
-          itemBuilder: (_, index) {
-            return Container(
-              margin: EdgeInsets.only(
-                  left: index == 0 ? 20 : 10,
-                  right: dataDummy.length - 1 == index ? 20 : 10),
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/image/banner.png'),
-                      fit: BoxFit.cover),
-                  borderRadius: BorderRadius.circular(10)),
-              height: 183,
-              width: width - Themes.marginDefault - Themes.marginDefault,
-              child: Center(child: Text("#Makan Aja")),
-            );
-          }),
-    );
   }
 }
