@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:mo_aja/provider/_provider.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider<ItemListProvider>(create: (_) => ItemListProvider()),
+  ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

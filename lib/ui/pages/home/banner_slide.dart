@@ -1,11 +1,11 @@
 part of '_home.dart';
 
-class BannerSlid extends StatefulWidget {
+class BannerSlide extends StatefulWidget {
   @override
-  _BannerSlidState createState() => _BannerSlidState();
+  _BannerSlideState createState() => _BannerSlideState();
 }
 
-class _BannerSlidState extends State<BannerSlid> {
+class _BannerSlideState extends State<BannerSlide> {
   final controller = PageController(
     initialPage: 1,
   );
@@ -22,7 +22,6 @@ class _BannerSlidState extends State<BannerSlid> {
     return Column(children: [
       SizedBox(
           height: 150,
-          // width: width,
           child: PageView(
               pageSnapping: true,
               controller: controller,
@@ -51,7 +50,7 @@ class _BannerSlidState extends State<BannerSlid> {
               dotWidth: 5,
               dotHeight: 5,
               dotColor: Color(0xFFDFF3EC),
-              activeDotColor: Themes.green),
+              activeDotColor: Themes.mainColors),
         ),
       )
     ]);
