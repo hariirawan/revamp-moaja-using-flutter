@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mo_aja/provider/_provider.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
+import 'package:mo_aja/ui/pages/login/_login.dart';
 import 'package:provider/provider.dart';
 
 void main() {

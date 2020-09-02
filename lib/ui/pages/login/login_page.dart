@@ -93,6 +93,15 @@ class _LoginPageState extends State<LoginPage> {
               decoration: BoxDecoration(
                 color: _isNumberValid ? Color(0xFF50BD58) : Colors.white,
                 borderRadius: BorderRadius.circular(76),
+                boxShadow: _isNumberValid
+                    ? [
+                        BoxShadow(
+                            color: Themes.mainColors.withOpacity(0.5),
+                            spreadRadius: 0.5,
+                            blurRadius: 10,
+                            offset: Offset(0, 5))
+                      ]
+                    : [],
                 border: Border.all(color: Color(0xFF50BD58)),
               ),
             ),
@@ -118,16 +127,16 @@ class _LoginPageState extends State<LoginPage> {
             Row(
               children: [
                 Spacer(),
-                LoginSosmed(
+                ButtonSosmed(
                   icon: Icon(
                     MdiIcons.facebook,
                     color: Colors.blue,
                   ),
                 ),
-                LoginSosmed(
+                ButtonSosmed(
                   icon: Icon(MdiIcons.gmail, color: Colors.red),
                 ),
-                LoginSosmed(
+                ButtonSosmed(
                   icon: Icon(MdiIcons.apple),
                 ),
                 Spacer(),

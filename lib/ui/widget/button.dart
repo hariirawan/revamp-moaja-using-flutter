@@ -1,8 +1,8 @@
 part of '_widget.dart';
 
-class LoginSosmed extends StatelessWidget {
+class ButtonSosmed extends StatelessWidget {
   final Icon icon;
-  LoginSosmed({this.icon});
+  ButtonSosmed({this.icon});
 
   @override
   Widget build(BuildContext context) {
