@@ -14,3 +14,4 @@ part 'card_news.dart';
 part 'card_needs.dart';
 part 'banner_head.dart';
 part 'banner_slide.dart';
+part 'carousel.dart';

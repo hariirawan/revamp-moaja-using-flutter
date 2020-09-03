@@ -6,6 +6,7 @@ class CardNeeds extends StatelessWidget {
   final double rate;
   final String desc;
   final Color btnColor;
+  final bool promo;
 
   CardNeeds(
       {this.image = "assets/images/daily-needs.png",
@@ -13,7 +14,8 @@ class CardNeeds extends StatelessWidget {
       this.rate = 3.0,
       this.desc =
           "Makaroni pedes. enak banget deh, gak bakalan relate pokoknya, siap-siap meninggal..",
-      this.btnColor = Themes.mainColors});
+      this.btnColor = Themes.mainColors,
+      this.promo});
 
   @override
   Widget build(BuildContext context) {
@@ -33,25 +35,29 @@ class CardNeeds extends StatelessWidget {
                         image: DecorationImage(
                             image: AssetImage(image), fit: BoxFit.cover)),
                   ),
-                  Container(
-                    height: 128,
-                    width: MediaQuery.of(context).size.width -
-                        Themes.marginDefault * 2,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        image: DecorationImage(
-                            image:
-                                AssetImage('assets/images/Rectangle 114.png'),
-                            fit: BoxFit.cover)),
-                  ),
+                  promo == false
+                      ? SizedBox()
+                      : Container(
+                          height: 128,
+                          width: MediaQuery.of(context).size.width -
+                              Themes.marginDefault * 2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/Rectangle 114.png'),
+                                  fit: BoxFit.cover)),
+                        ),
                 ])),
             Positioned(
               top: 0,
               left: 12,
-              child: Image.asset(
-                'assets/icons/promo-flag.png',
-                width: 31.145,
-              ),
+              child: promo == false
+                  ? SizedBox()
+                  : Image.asset(
+                      'assets/icons/promo-flag.png',
+                      width: 31.145,
+                    ),
             ),
           ])),
       SizedBox(

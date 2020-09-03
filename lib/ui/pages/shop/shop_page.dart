@@ -36,177 +36,191 @@ class _ShopPageState extends State<ShopPage> {
     double width = MediaQuery.of(context).size.width;
 
     return SafeArea(
+        top: false,
         child: Stack(children: [
-      ListView(
-        children: [
-          BannerHead(
-              banner: 'assets/images/merah 1.png',
-              children: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: Themes.marginDefault,
-                          right: Themes.marginDefault,
-                          top: 20.48),
-                      child: GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Image.asset(
-                          'assets/icons/Path.png',
-                          width: 9,
-                        ),
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: Themes.marginDefault,
-                          right: Themes.marginDefault,
-                          top: 16.49),
-                      child: Row(
-                        children: [
-                          Text("Alamat antar",
-                              style: TextStyle(color: Colors.white)),
-                          SizedBox(width: 10),
-                          Text("Jl. Kuningan Barat 1...",
-                              style: TextStyle(color: Colors.white)),
-                        ],
-                      )),
-                  Container(
-                      margin: EdgeInsets.only(
-                          left: Themes.marginDefault,
-                          right: Themes.marginDefault,
-                          top: 26.48,
-                          bottom: 48.23),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'MO cari apa?',
-                          filled: true,
-                          fillColor: Colors.white,
-                          prefixIcon: Icon(Icons.search),
-                          contentPadding:
-                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                          border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(32.0)),
-                        ),
-                      )),
-                  BannerSlide(),
-                ],
-              )),
-          Container(
-            margin: EdgeInsets.only(bottom: 20, left: 20, right: 20, top: 30),
-            child: TitleView(
-              title: "Sekitar Anda",
-              subtitle: "Lihat Semua",
-              colorSub: Colors.redAccent,
-              desc: "Temukan tempat belanja menarik di sekitar Anda",
-            ),
-          ),
-          listRecomendation(),
-
-          //List Recomendasi Terbaik
-          Container(
-            margin: EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-            child: TitleView(
-              title: "Rekomendasi Terbaik",
-              desc: "Boleh dicoba Merchant pilihan kami, jaminan puas!",
-            ),
-          ),
-          Column(
-              children: dummyData
-                  .sublist(0, 3)
-                  .map((e) => bestRecomendation(context, e.name, dummyData))
-                  .toList()),
-
-          //List Belanja Kekinian
-          Container(
-            margin: EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-            child: TitleView(
-              title: "MObelanja Kekinian",
-              subtitle: "Lihat Semua",
-              colorSub: Colors.redAccent,
-              desc: "Belanjaan kekinian yang gak bakal bikin kamu ketinggalan",
-            ),
-          ),
-          shoppingRecomendations(context),
-
-          //List Kebutuhan Harian
-          Container(
-            margin: EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
-            child: TitleView(
-              title: "Kebutuhan Harian",
-              desc: "Layanan dan produk yang mungkin Anda butuhkan",
-            ),
-          ),
-          dailyNeeds(context),
-        ],
-      ),
-      Positioned(
-          left: width / 2 - 160 / 2,
-          bottom: 20,
-          child: Container(
-            width: 160,
-            height: 56,
-            decoration: BoxDecoration(
-                // boxShadow: [
-                //   BoxShadow(
-                //       color: Color.fromRGBO(197, 23, 35, 0.4),
-                //       blurRadius: 15,
-                //       offset: Offset(4, 4))
-                // ],
-                gradient: LinearGradient(colors: [
-                  Color.fromRGBO(225, 26, 40, 0.8),
-                  Color.fromRGBO(197, 22, 34, 0.8)
-                ], begin: Alignment.topCenter, end: Alignment.topCenter),
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(50)),
-            child: Align(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.shopping_basket,
-                    color: Colors.white,
-                    size: 30,
-                  ),
-                  SizedBox(width: 9.8),
-                  Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "3 Items",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        Text(
-                          "Rp. 30000",
-                          style: TextStyle(
-                              color: Colors.white, fontWeight: FontWeight.bold),
-                        ),
-                      ]),
-                ],
+          ListView(
+            padding: EdgeInsets.all(0.0),
+            children: [
+              BannerHead(
+                  banner: 'assets/images/merah 1.png',
+                  children: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(
+                        height: MediaQuery.of(context).padding.top,
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Navigator.pop(context);
+                          },
+                          child: Container(
+                            margin: EdgeInsets.only(
+                                left: Themes.marginDefault,
+                                right: Themes.marginDefault),
+                            padding: EdgeInsets.only(
+                                top: 22.83 / 2, bottom: 22.83 / 2),
+                            child: Image.asset(
+                              'assets/icons/Path.png',
+                              width: 10,
+                            ),
+                          )),
+                      Container(
+                          margin: EdgeInsets.only(
+                              left: Themes.marginDefault,
+                              right: Themes.marginDefault,
+                              top: 16.49),
+                          child: Row(
+                            children: [
+                              Text("Alamat antar",
+                                  style: TextStyle(color: Colors.white)),
+                              SizedBox(width: 10),
+                              Text("Jl. Kuningan Barat 1...",
+                                  style: TextStyle(color: Colors.white)),
+                            ],
+                          )),
+                      Container(
+                          margin: EdgeInsets.only(
+                            left: Themes.marginDefault,
+                            right: Themes.marginDefault,
+                            top: 26.48,
+                          ),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'MO cari apa?',
+                              filled: true,
+                              fillColor: Colors.white.withOpacity(0.8),
+                              prefixIcon: Icon(Icons.search),
+                              contentPadding: EdgeInsets.symmetric(
+                                  horizontal: 13, vertical: 11),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent, width: 1),
+                                  borderRadius: BorderRadius.circular(32.0)),
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      color: Colors.transparent, width: 1),
+                                  borderRadius: BorderRadius.circular(32.0)),
+                            ),
+                          )),
+                      SizedBox(
+                        height: 30,
+                      ),
+                      BannerSlide(),
+                    ],
+                  )),
+              Container(
+                margin:
+                    EdgeInsets.only(bottom: 20, left: 20, right: 20, top: 30),
+                child: TitleView(
+                  title: "Sekitar Anda",
+                  subtitle: "Lihat Semua",
+                  colorSub: Colors.redAccent,
+                  desc: "Temukan tempat belanja menarik di sekitar Anda",
+                ),
               ),
-            ),
-          )),
-    ]));
+              listRecomendation(),
+
+              //List Recomendasi Terbaik
+              Container(
+                margin:
+                    EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+                child: TitleView(
+                  title: "Rekomendasi Terbaik",
+                  desc: "Boleh dicoba Merchant pilihan kami, jaminan puas!",
+                ),
+              ),
+              Column(
+                  children: dummyData
+                      .sublist(0, 3)
+                      .map((e) => bestRecomendation(context, e.name, dummyData))
+                      .toList()),
+
+              //List Belanja Kekinian
+              Container(
+                margin:
+                    EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+                child: TitleView(
+                  title: "MObelanja Kekinian",
+                  subtitle: "Lihat Semua",
+                  colorSub: Colors.redAccent,
+                  desc:
+                      "Belanjaan kekinian yang gak bakal bikin kamu ketinggalan",
+                ),
+              ),
+              shoppingRecomendations(context),
+
+              //List Kebutuhan Harian
+              Container(
+                margin:
+                    EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
+                child: TitleView(
+                  title: "Kebutuhan Harian",
+                  desc: "Layanan dan produk yang mungkin Anda butuhkan",
+                ),
+              ),
+              dailyNeeds(context),
+            ],
+          ),
+          Positioned(
+              left: width / 2 - 160 / 2,
+              bottom: 20,
+              child: Container(
+                width: 160,
+                height: 56,
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color.fromRGBO(197, 23, 35, 0.4),
+                          blurRadius: 15,
+                          offset: Offset(4, 4))
+                    ],
+                    gradient: LinearGradient(colors: [
+                      Color.fromRGBO(225, 26, 40, 0.8),
+                      Color.fromRGBO(197, 22, 34, 0.8)
+                    ], begin: Alignment.topCenter, end: Alignment.topCenter),
+                    color: Colors.blue,
+                    borderRadius: BorderRadius.circular(50)),
+                child: Align(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.shopping_basket,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                      SizedBox(width: 9.8),
+                      Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "3 Items",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            Text(
+                              "Rp. 30000",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ]),
+                    ],
+                  ),
+                ),
+              )),
+        ]));
   }
 
   Widget shoppingRecomendations(BuildContext context) {
-    List<int> data = [1, 2, 3, 4, 5];
-
     return Container(
         height: 210,
         width: MediaQuery.of(context).size.width - 20 - 20,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: data.length,
-          itemBuilder: (context, index) {
-            return CardNews(
-              image: "assets/images/bg_card.png",
-            );
-          },
-        ));
+        child: Carousel(
+            children: CardNews(
+          image: "assets/images/bg_card.png",
+        )));
   }
 
   Widget bestRecomendation(BuildContext context, String e, List dataDummy) {

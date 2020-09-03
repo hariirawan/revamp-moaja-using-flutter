@@ -17,13 +17,13 @@ class MyApp extends StatelessWidget {
     return {
       '/': (context) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(statusBarColor: Colors.green),
-          child: Scaffold(body: Layout()),
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+          child: Layout(),
         );
       },
       '/shop': (context) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(statusBarColor: Colors.red),
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
           child: Scaffold(body: ShopPage()),
         );
       },
