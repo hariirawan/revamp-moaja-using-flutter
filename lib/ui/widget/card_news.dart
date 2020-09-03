@@ -3,7 +3,7 @@ part of '_widget.dart';
 class CardNews extends StatelessWidget {
   final String image;
 
-  CardNews({this.image = "assets/image/jokowi.png"});
+  CardNews({this.image = "assets/images/jokowi.png"});
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +14,14 @@ class CardNews extends StatelessWidget {
           Container(
             height: 135,
             width: MediaQuery.of(context).size.width - 20 - 20,
-            margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
+            margin: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
                     image: AssetImage(image), fit: BoxFit.cover)),
           ),
           Container(
-            margin: EdgeInsets.only(
-                left: Themes.marginDefault,
-                right: Themes.marginDefault,
-                top: 10),
+            margin: EdgeInsets.only(left: 10, right: 10, top: 10),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -3,7 +3,7 @@ part of '_provider.dart';
 class ItemListProvider with ChangeNotifier {
   List<ModelListItem> _data = [
     ModelListItem(
-        image: 'assets/image/merchant.png',
+        image: 'assets/images/merchant.png',
         name: "Bakmi Komplit",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
@@ -11,7 +11,7 @@ class ItemListProvider with ChangeNotifier {
         discount: 2500,
         quantity: 0),
     ModelListItem(
-        image: 'assets/image/merchant.png',
+        image: 'assets/images/merchant.png',
         name: "Bakso Beranak",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
@@ -19,7 +19,7 @@ class ItemListProvider with ChangeNotifier {
         discount: 2500,
         quantity: 0),
     ModelListItem(
-        image: 'assets/image/merchant.png',
+        image: 'assets/images/merchant.png',
         name: "Mie Ayam",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
@@ -27,7 +27,7 @@ class ItemListProvider with ChangeNotifier {
         discount: 2500,
         quantity: 0),
     ModelListItem(
-        image: 'assets/image/merchant.png',
+        image: 'assets/images/merchant.png',
         name: "Mie Ayam",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",

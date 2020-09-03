@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mo_aja/model/_model.dart';
 import 'package:mo_aja/shared/_shared.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 part 'button.dart';
 part 'separator.dart';
@@ -11,3 +12,5 @@ part 'card_recomendation.dart';
 part 'card_best_recomendation.dart';
 part 'card_news.dart';
 part 'card_needs.dart';
+part 'banner_head.dart';
+part 'banner_slide.dart';

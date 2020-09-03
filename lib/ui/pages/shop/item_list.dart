@@ -28,7 +28,7 @@ class _ItemListState extends State<ItemList> {
                 decoration: BoxDecoration(
                     // color: Colors.red,
                     image: DecorationImage(
-                        image: AssetImage('assets/image/bg_item_list.png'),
+                        image: AssetImage('assets/images/bg_item_list.png'),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.only(
                         bottomLeft: Radius.circular(25),

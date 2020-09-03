@@ -9,119 +9,239 @@ class _HomePageState extends State<HomePage> {
   final List<String> dataDummy = ["1", "2", "3", "4", "5"];
 
   @override
+  void initState() {
+    super.initState();
+
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.green));
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(10),
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: Themes.marginDefault,
-                right: Themes.marginDefault,
-                bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
+    double width = MediaQuery.of(context).size.width;
+    return SafeArea(
+        top: true,
+        child: ListView(
+          children: <Widget>[
+            BannerHead(
+              banner: 'assets/banner/banner-green.png',
+              children: Container(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        'Halo, Nunu',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22,
-                          letterSpacing: 0.27,
-                        ),
-                      ),
-                      Text(
-                        'Alamat pengiriman, Jl. Kuningan Barat',
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 10,
-                          letterSpacing: 0.2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Stack(
-                  children: [
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                    SizedBox(
+                      height: 37.79,
+                    ),
                     Container(
-                      width: 35,
-                      height: 35,
-                      decoration: BoxDecoration(
-                          color: Color(0xFFFFEFEF),
-                          borderRadius: BorderRadius.circular(35)),
-                      child: Icon(
-                        Icons.notifications,
-                        color: Color(0xFFF14343),
-                        size: 18,
+                      margin: EdgeInsets.symmetric(horizontal: 20),
+                      child: Row(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Halo, Lutfi!",
+                                style: Themes.fontBold.copyWith(
+                                    fontSize: 22, color: Colors.white),
+                              ),
+                              Container(
+                                  margin: EdgeInsets.only(top: 6),
+                                  child: Row(children: [
+                                    Text(
+                                      "Alamat pengiriman",
+                                      style: Themes.fontNormal.copyWith(
+                                          fontSize: 10, color: Colors.white),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      "Jl. Kuningan Barat",
+                                      style: Themes.fontNormal.copyWith(
+                                          fontSize: 10,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                  ]))
+                            ],
+                          ),
+                          Spacer(),
+                          Stack(children: [
+                            Container(
+                              width: 35,
+                              height: 35,
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.white.withOpacity(0.3)),
+                              child: Icon(
+                                Icons.notifications,
+                                color: Colors.white,
+                                size: 20,
+                              ),
+                            ),
+                            Positioned(
+                                right: 0,
+                                child: Container(
+                                    height: 14,
+                                    width: 14,
+                                    decoration: BoxDecoration(
+                                        color: Color(0xFFC41622),
+                                        shape: BoxShape.circle),
+                                    child: Center(
+                                        child: Text("9+",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 8))))),
+                          ])
+                        ],
                       ),
                     ),
-                    Positioned(
-                        top: 0.1,
-                        right: 3.0,
-                        child: Container(
-                          height: 14,
-                          width: 14,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(50),
-                              color: Colors.red),
-                          child: Center(
-                            child: Text("9+",
-                                style: TextStyle(
-                                    fontSize: 8, color: Colors.white)),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        margin: EdgeInsets.symmetric(horizontal: 20),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'MO cari apa?',
+                            filled: true,
+                            fillColor: Colors.white.withOpacity(0.8),
+                            prefixIcon: Icon(Icons.search),
+                            contentPadding:
+                                EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(32.0)),
                           ),
-                        ))
-                  ],
-                )
-              ],
+                        )),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    BannerSlide(),
+                  ])),
             ),
-          ),
-        ),
-        body: ListView(
-          children: <Widget>[
-            SizedBox(height: 20),
-            BannerSlide(),
-            SizedBox(height: 30),
             Container(
+              margin: EdgeInsets.only(bottom: 25),
               child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: menus
                       .map((e) => GestureDetector(
                             onTap: () {
-                              if (e.name == "MObelanja") {
-                                Navigator.push<dynamic>(
-                                  context,
-                                  MaterialPageRoute<dynamic>(
-                                      builder: (BuildContext context) =>
-                                          ShopPage()),
-                                );
+                              if (e.name == "Makanan\nMinuman") {
+                                Navigator.pushNamed(context, '/shop');
                               }
                             },
                             child: Column(
                               children: [
                                 Container(
-                                    width: 50,
-                                    height: 50,
-                                    margin: EdgeInsets.only(bottom: 8),
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: AssetImage(e.icon)))),
-                                Text(
-                                  e.name,
-                                  style: TextStyle(fontSize: 10),
-                                )
+                                  width: 75,
+                                  height: 95,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: Container(
+                                            height: 90,
+                                            width: 71,
+                                            decoration: BoxDecoration(
+                                                color: e.color,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Container(
+                                              padding: EdgeInsets.only(top: 8),
+                                              alignment: Alignment.topCenter,
+                                              child: Text(e.name,
+                                                  style: Themes.fontBold
+                                                      .copyWith(
+                                                          color: Colors.white,
+                                                          fontSize: 10)),
+                                            ),
+                                          )),
+                                      Positioned(
+                                          bottom: -10,
+                                          left: 0,
+                                          child: Container(
+                                              width: 70,
+                                              height: 74,
+                                              margin:
+                                                  EdgeInsets.only(bottom: 8),
+                                              decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                      image: AssetImage(
+                                                          e.icon))))),
+                                    ],
+                                  ),
+                                ),
                               ],
                             ),
                           ))
                       .toList()),
             ),
+
+            Container(
+                height: 120,
+                width: width - 20 * 2,
+                margin: EdgeInsets.symmetric(horizontal: 20),
+                decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          offset: Offset(1, 5),
+                          blurRadius: 10,
+                          spreadRadius: 5,
+                          color: Color(0xFFE5E5E5))
+                    ],
+                    image: DecorationImage(
+                        image: AssetImage('assets/banner/food.png'),
+                        fit: BoxFit.cover),
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(6)),
+                child: Container(
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 15, vertical: 10.98),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(6),
+                      gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.black.withOpacity(0.9),
+                            Colors.black.withOpacity(0)
+                          ]),
+                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Text(
+                            "FoodCourt",
+                            style:
+                                Themes.fontBold.copyWith(color: Colors.white),
+                          ),
+                          Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Container(
+                                  width: 230,
+                                  margin: EdgeInsets.only(top: 10.41),
+                                  child: Text(
+                                      "Kamu bisa pesen banyak dari banyak Merchant dengan satu ongkir",
+                                      maxLines: 2,
+                                      overflow: TextOverflow.clip,
+                                      style: Themes.fontNormal
+                                          .copyWith(color: Colors.white)),
+                                ),
+                                Spacer(),
+                                Align(
+                                    child: Button(
+                                  label: "Cobain",
+                                  btnColor: Themes.mainColors,
+                                  paddingH: 15,
+                                  paddingV: 4,
+                                ))
+                              ]),
+                        ]))),
             SizedBox(height: 30),
             Container(
               margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
@@ -162,10 +282,8 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: Themes.marginDefault,
             ),
-            news(context),
-            SizedBox(
-              height: Themes.marginDefault,
-            ),
+            // news(context),
+            HomeNews(),
             Container(
               margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
               child: TitleView(
@@ -194,7 +312,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         children: [
           CardBestRecomendation(
-            image: 'assets/image/merchant.png',
+            image: 'assets/images/merchant.png',
             title: "NOS Car Wash",
             subTitle: "Jl. Bangka Raya No. 5c Kemang, Jakarta Selatan",
           ),
@@ -227,12 +345,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget dailyNeeds(BuildContext context) {
-    List<int> data = [1, 2, 3, 4, 5];
-
     return Container(
         margin: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
         child: Column(
-          children: data.map((e) => CardNeeds()).toList(),
+          children: itemDummy
+              .map(
+                (e) => CardNeeds(
+                  image: e.image,
+                  title: e.name,
+                  desc: e.desc,
+                  rate: e.rate,
+                ),
+              )
+              .toList(),
         ));
   }
 
@@ -247,5 +372,25 @@ class _HomePageState extends State<HomePage> {
                 index: index,
               );
             }));
+  }
+}
+
+class CustomShape extends CustomClipper<Path> {
+  @override
+  getClip(Size size) {
+    double height = size.height;
+    double width = size.width;
+    var path = Path();
+    path.lineTo(0, height - 50);
+    path.quadraticBezierTo(width / 2, height, width, height - 50);
+    path.lineTo(width, 0);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper oldClipper) {
+    return true;
   }
 }

@@ -26,172 +26,73 @@ class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
     super.initState();
+
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.red));
   }
 
   @override
   Widget build(BuildContext context) {
-    double getDiameter(BuildContext context) =>
-        MediaQuery.of(context).size.width * 2 / 3;
+    double width = MediaQuery.of(context).size.width;
 
-    return Scaffold(
-        body: Stack(children: [
+    return SafeArea(
+        child: Stack(children: [
       ListView(
         children: [
-          Container(
-            height: 390,
-            child: Stack(
-              children: [
-                Stack(
-                  children: [
-                    Container(
-                        height: 280,
-                        width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                image: AssetImage("assets/image/banner.png"),
-                                fit: BoxFit.cover)),
-                        child: ClipRRect(
-                          child: BackdropFilter(
-                            filter: ImageFilter.blur(sigmaX: 15, sigmaY: 20),
-                            child: Container(
-                              height: 280,
-                              width: MediaQuery.of(context).size.width,
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: Alignment.bottomCenter,
-                                    end: Alignment.topCenter,
-                                    colors: [
-                                      Colors.white.withOpacity(1),
-                                      Color(0xFF9E141D).withOpacity(.7),
-                                      Color(0xFF9E141D).withOpacity(.8),
-                                      Color(0xFFC41622).withOpacity(1),
-                                    ]),
-                              ),
-                              child: Container(
-                                  margin: EdgeInsets.symmetric(
-                                      horizontal: Themes.marginDefault),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      SizedBox(height: 20.48),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                        child:
-                                            Image.asset('assets/icon_back.png'),
-                                      ),
-                                      SizedBox(height: 25.49),
-                                      Row(
-                                        children: [
-                                          Text("Alamat antar",
-                                              style: TextStyle(
-                                                  color: Colors.white)),
-                                          SizedBox(width: 10),
-                                          Text("Jl. Kuningan Barat 1...",
-                                              style: TextStyle(
-                                                  color: Colors.white)),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: 30,
-                                      ),
-                                      TextField(
-                                        decoration: InputDecoration(
-                                          hintText: 'MO cari apa?',
-                                          filled: true,
-                                          fillColor: Colors.white,
-                                          prefixIcon: Icon(Icons.search),
-                                          contentPadding: EdgeInsets.fromLTRB(
-                                              20.0, 15.0, 20.0, 15.0),
-                                          border: OutlineInputBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(32.0)),
-                                        ),
-                                      ),
-                                    ],
-                                  )),
-                            ),
-                          ),
-                        )),
-                  ],
-                ),
-                Positioned(
-                    bottom: 0,
-                    child: Container(
-                        // margin: EdgeInsets.only(top: 30),
-                        height: 200,
-                        width: MediaQuery.of(context).size.width,
-                        child: bannerSlide(context))),
-              ],
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(bottom: 28.33, left: 20, right: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset('assets/Bag.png'),
-                SizedBox(width: 5),
-                Text(
-                  "MO",
-                  style: Themes.fontLogo.copyWith(
-                      fontSize: 24,
-                      color: Themes.red,
-                      fontWeight: FontWeight.bold),
-                ),
-                Text("beli apa?",
-                    style: Themes.fontLogo
-                        .copyWith(fontSize: 24, fontWeight: FontWeight.bold))
-              ],
-            ),
-          ),
-          Container(
-            height: 25,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: data.length,
-                itemBuilder: (context, e) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        initialState = e;
-                      });
-                    },
-                    child: Container(
+          BannerHead(
+              banner: 'assets/images/merah 1.png',
+              children: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
                       margin: EdgeInsets.only(
-                          left: e == 0 ? Themes.marginDefault : 0, right: 26),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                          left: Themes.marginDefault,
+                          right: Themes.marginDefault,
+                          top: 20.48),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Image.asset(
+                          'assets/icons/Path.png',
+                          width: 9,
+                        ),
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(
+                          left: Themes.marginDefault,
+                          right: Themes.marginDefault,
+                          top: 16.49),
+                      child: Row(
                         children: [
-                          Container(
-                              child: Text(
-                            data[e],
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 11,
-                                color: initialState == e
-                                    ? Themes.red
-                                    : Color(0xFFC5CFD6)),
-                          )),
-                          initialState == e
-                              ? Container(
-                                  width: 25,
-                                  height: 2,
-                                  margin: EdgeInsets.only(top: 5),
-                                  decoration: BoxDecoration(
-                                      color: Themes.red,
-                                      borderRadius: BorderRadius.circular(100)),
-                                )
-                              : SizedBox()
+                          Text("Alamat antar",
+                              style: TextStyle(color: Colors.white)),
+                          SizedBox(width: 10),
+                          Text("Jl. Kuningan Barat 1...",
+                              style: TextStyle(color: Colors.white)),
                         ],
-                      ),
-                    ),
-                  );
-                }),
-          ),
-
+                      )),
+                  Container(
+                      margin: EdgeInsets.only(
+                          left: Themes.marginDefault,
+                          right: Themes.marginDefault,
+                          top: 26.48,
+                          bottom: 48.23),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'MO cari apa?',
+                          filled: true,
+                          fillColor: Colors.white,
+                          prefixIcon: Icon(Icons.search),
+                          contentPadding:
+                              EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(32.0)),
+                        ),
+                      )),
+                  BannerSlide(),
+                ],
+              )),
           Container(
             margin: EdgeInsets.only(bottom: 20, left: 20, right: 20, top: 30),
             child: TitleView(
@@ -241,18 +142,18 @@ class _ShopPageState extends State<ShopPage> {
         ],
       ),
       Positioned(
-          left: getDiameter(context) / 2,
+          left: width / 2 - 160 / 2,
           bottom: 20,
           child: Container(
             width: 160,
             height: 56,
             decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                      color: Color.fromRGBO(197, 23, 35, 0.4),
-                      blurRadius: 15,
-                      offset: Offset(4, 4))
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: Color.fromRGBO(197, 23, 35, 0.4),
+                //       blurRadius: 15,
+                //       offset: Offset(4, 4))
+                // ],
                 gradient: LinearGradient(colors: [
                   Color.fromRGBO(225, 26, 40, 0.8),
                   Color.fromRGBO(197, 22, 34, 0.8)
@@ -302,7 +203,7 @@ class _ShopPageState extends State<ShopPage> {
           itemCount: data.length,
           itemBuilder: (context, index) {
             return CardNews(
-              image: "assets/image/bg_card.png",
+              image: "assets/images/bg_card.png",
             );
           },
         ));
@@ -314,7 +215,7 @@ class _ShopPageState extends State<ShopPage> {
       child: Column(
         children: [
           CardBestRecomendation(
-            image: 'assets/image/merchant.png',
+            image: 'assets/images/merchant.png',
             title: "NOS Car Wash",
             subTitle: "Jl. Bangka Raya No. 5c Kemang, Jakarta Selatan",
           ),
@@ -381,7 +282,7 @@ class _ShopPageState extends State<ShopPage> {
                         margin: EdgeInsets.only(left: 20, right: 20),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/image/banner.png'),
+                                image: AssetImage('assets/images/banner.png'),
                                 fit: BoxFit.cover),
                             borderRadius: BorderRadius.circular(10)),
                         height: 183,

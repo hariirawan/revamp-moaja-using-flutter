@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mo_aja/provider/_provider.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
-import 'package:mo_aja/ui/pages/login/_login.dart';
+import 'package:mo_aja/ui/pages/shop/_shop.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -12,13 +13,30 @@ void main() {
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
+  Map<String, WidgetBuilder> get routes {
+    return {
+      '/': (context) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.green),
+          child: Scaffold(body: Layout()),
+        );
+      },
+      '/shop': (context) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.red),
+          child: Scaffold(body: ShopPage()),
+        );
+      },
+    };
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.green[300], primarySwatch: Colors.green),
-      home: Layout(),
+      initialRoute: '/',
+      // home: Layout(),
+      routes: routes,
     );
   }
 }
