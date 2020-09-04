@@ -7,7 +7,7 @@ class ItemListProvider with ChangeNotifier {
         name: "Bakmi Komplit",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
-        price: 2000,
+        price: 1000,
         discount: 2500,
         quantity: 0),
     ModelListItem(
@@ -15,7 +15,15 @@ class ItemListProvider with ChangeNotifier {
         name: "Bakso Beranak",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
-        price: 1000,
+        price: 4000,
+        discount: 2500,
+        quantity: 0),
+    ModelListItem(
+        image: 'assets/images/merchant.png',
+        name: "Mie Ayam",
+        desc:
+            "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
+        price: 5000,
         discount: 2500,
         quantity: 0),
     ModelListItem(
@@ -32,6 +40,30 @@ class ItemListProvider with ChangeNotifier {
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
         price: 2000,
+        discount: 2500,
+        quantity: 0),
+    ModelListItem(
+        image: 'assets/images/merchant.png',
+        name: "Mie Ayam",
+        desc:
+            "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
+        price: 2000,
+        discount: 2500,
+        quantity: 0),
+    ModelListItem(
+        image: 'assets/images/merchant.png',
+        name: "Mie Ayam",
+        desc:
+            "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
+        price: 8000,
+        discount: 2500,
+        quantity: 0),
+    ModelListItem(
+        image: 'assets/images/merchant.png',
+        name: "Bakmi Spesial",
+        desc:
+            "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
+        price: 1800,
         discount: 2500,
         quantity: 0),
   ];

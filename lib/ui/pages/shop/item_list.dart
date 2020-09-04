@@ -13,139 +13,67 @@ class _ItemListState extends State<ItemList> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
-        body: ListView(
-      children: [
-        SizedBox(
-          height: 293,
-          child: Stack(
-            children: [
-              Container(
-                height: 250,
-                width: width,
+        body: Stack(fit: StackFit.expand, children: [
+      FractionallySizedBox(
+        child: Image.asset(
+          'assets/images/bg_item_list.png',
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: double.infinity,
+        ),
+      ),
+      DraggableScrollableSheet(
+          initialChildSize: 0.4,
+          minChildSize: 0.2,
+          maxChildSize: 0.65,
+          builder: (context, scrollController) {
+            return Container(
                 decoration: BoxDecoration(
-                    // color: Colors.red,
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/bg_item_list.png'),
-                        fit: BoxFit.cover),
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(25),
-                        bottomRight: Radius.circular(25))),
-              ),
-              Positioned(
-                  child: GestureDetector(
-                onTap: () {
-                  Navigator.of(context).pop();
-                },
-                child: Container(
-                  margin: EdgeInsets.only(
-                      left: Themes.marginDefault, top: Themes.marginDefault),
-                  child: Icon(
-                    Icons.keyboard_arrow_left,
-                    size: 30,
                     color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30.0),
+                        topRight: Radius.circular(30.0))),
+                child: SingleChildScrollView(
+                  physics: NeverScrollableScrollPhysics(),
+                  child: Column(
+                    children: [
+                      Container(
+                          height: 4.04,
+                          width: 60.58,
+                          margin: EdgeInsets.only(top: 10, bottom: 10),
+                          decoration: BoxDecoration(
+                              color: Color(0xFFD8D8D8),
+                              borderRadius: BorderRadius.circular(40))),
+                      Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * 0.80,
+                          padding: EdgeInsets.only(
+                              bottom: Themes.marginDefault,
+                              left: Themes.marginDefault,
+                              right: Themes.marginDefault),
+                          child: Consumer<ItemListProvider>(
+                            builder: (context, itemListProvider, _) {
+                              return ListView.builder(
+                                  controller: scrollController,
+                                  itemCount:
+                                      itemListProvider.dataItemList.length,
+                                  itemBuilder: (BuildContext context,
+                                          int index) =>
+                                      Container(
+                                          margin: EdgeInsets.only(bottom: 30),
+                                          child: cardItem(
+                                              context,
+                                              itemListProvider
+                                                  .dataItemList[index],
+                                              index)));
+                            },
+                          ))
+                    ],
                   ),
-                ),
-              )),
-              Positioned(
-                  bottom: 0,
-                  child: Container(
-                    height: 92,
-                    width: width - Themes.marginDefault * 2,
-                    margin: EdgeInsets.symmetric(horizontal: 20),
-                    padding: EdgeInsets.symmetric(horizontal: 22, vertical: 7),
-                    decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              color: Color(0xFF4C4C4C).withOpacity(0.1),
-                              blurRadius: 15,
-                              offset: Offset(4, 4))
-                        ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Bakmi JM",
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        RatingStars(
-                          voteAverage: 10,
-                        ),
-                        Row(
-                          children: [
-                            Icon(
-                              Icons.location_on,
-                              size: 16,
-                              color: Themes.red,
-                            ),
-                            SizedBox(
-                              width: 12.62,
-                            ),
-                            Text(
-                              "Jl. Mampang Prapatan XIV, Jakarta Selatan",
-                              style: TextStyle(fontSize: 10),
-                            )
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Icon(Icons.timer, size: 16),
-                            SizedBox(
-                              width: 12.62,
-                            ),
-                            Text(
-                              "Buka",
-                              style: TextStyle(
-                                  fontSize: 10, fontWeight: FontWeight.bold),
-                            ),
-                            SizedBox(
-                              width: 8,
-                            ),
-                            Text("08:00-21:00", style: TextStyle(fontSize: 10))
-                          ],
-                        ),
-                      ],
-                    ),
-                  ))
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-              top: 16, left: Themes.marginDefault, right: Themes.marginDefault),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Paket Akhir Bulan",
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(
-              top: 30, left: Themes.marginDefault, right: Themes.marginDefault),
-          child: Consumer<ItemListProvider>(
-              builder: (context, itemListProvider, _) => Column(
-                  children: List.generate(
-                      itemListProvider.dataItemList.length,
-                      (index) => Container(
-                          margin: EdgeInsets.only(bottom: 20),
-                          child: cardItem(
-                              context,
-                              itemListProvider.dataItemList[index],
-                              index))).toList())),
-        )
-      ],
-    ));
+                ));
+          })
+    ]));
   }
 
   Widget cardItem(BuildContext context, ModelListItem data, int index) {
