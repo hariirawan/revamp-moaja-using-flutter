@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mo_aja/provider/_provider.dart';
+import 'package:mo_aja/shared/_shared.dart';
+import 'package:mo_aja/ui/pages/detail-order/_detail_order.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
 import 'package:mo_aja/ui/pages/shop/_shop.dart';
 import 'package:provider/provider.dart';
@@ -27,6 +29,12 @@ class MyApp extends StatelessWidget {
           child: Scaffold(body: ShopPage()),
         );
       },
+      '/detail-order': (context) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
+          child: Scaffold(body: DetailOrder()),
+        );
+      },
     };
   }
 
@@ -35,7 +43,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      // home: Layout(),
       routes: routes,
     );
   }
@@ -80,7 +87,12 @@ class _LayoutState extends State<Layout> {
                         : 'assets/icon-navigation/Home-grey.png',
                     scale: 4,
                   )),
-              title: Text("Beranda")),
+              title: Text(
+                "Beranda",
+                style: TextStyle(
+                    color:
+                        _selectedIndex == 0 ? Themes.green : Color(0xFFBDBDBD)),
+              )),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -90,7 +102,11 @@ class _LayoutState extends State<Layout> {
                         : 'assets/icon-navigation/Document-grey.png',
                     scale: 4,
                   )),
-              title: Text("Aktifitas")),
+              title: Text("Aktifitas",
+                  style: TextStyle(
+                      color: _selectedIndex == 1
+                          ? Themes.green
+                          : Color(0xFFBDBDBD)))),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -100,7 +116,11 @@ class _LayoutState extends State<Layout> {
                         : 'assets/icon-navigation/Group-grey.png',
                     scale: 4,
                   )),
-              title: Text("Keranjang")),
+              title: Text("Keranjang",
+                  style: TextStyle(
+                      color: _selectedIndex == 2
+                          ? Themes.green
+                          : Color(0xFFBDBDBD)))),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
@@ -110,7 +130,12 @@ class _LayoutState extends State<Layout> {
                         : 'assets/icon-navigation/Profile-grey.png',
                     scale: 4,
                   )),
-              title: Text("Masuk")),
+              title: Text(
+                "Masuk",
+                style: TextStyle(
+                    color:
+                        _selectedIndex == 3 ? Themes.green : Color(0xFFBDBDBD)),
+              )),
         ],
         currentIndex: _selectedIndex,
         onTap: _onTabItem,

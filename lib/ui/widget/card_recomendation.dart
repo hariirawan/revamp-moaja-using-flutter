@@ -19,7 +19,8 @@ class CardRecomendation extends StatelessWidget {
           right: index == dummyData.length - 1 ? Themes.marginDefault : 5),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),
-          image: DecorationImage(image: AssetImage(dummyData[index].image))),
+          image: DecorationImage(
+              image: AssetImage(dummyData[index].image), fit: BoxFit.cover)),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(6),

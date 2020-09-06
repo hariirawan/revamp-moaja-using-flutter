@@ -6,74 +6,327 @@ class ItemList extends StatefulWidget {
 }
 
 class _ItemListState extends State<ItemList> {
+  ScrollController controllerNew;
+  bool upArrowFloating = false;
+  static double _titlePadding = 150.0;
+  double _imageHeight = 320.0;
+  double _titlePosition;
+  double _initialTitlePosition;
+  double _prevExtent = 0.7;
+
   @override
   void initState() {
     super.initState();
+    this._titlePosition = this._imageHeight - _titlePadding;
+    this._initialTitlePosition = this._imageHeight - _titlePadding;
   }
 
   @override
   Widget build(BuildContext context) {
+    double _screenHeight = MediaQuery.of(context).size.height;
+    print(upArrowFloating);
+
     return Scaffold(
-        body: Stack(fit: StackFit.expand, children: [
-      FractionallySizedBox(
-        child: Image.asset(
-          'assets/images/bg_item_list.png',
-          fit: BoxFit.cover,
-          width: double.infinity,
-          height: double.infinity,
-        ),
-      ),
-      DraggableScrollableSheet(
-          initialChildSize: 0.4,
-          minChildSize: 0.2,
-          maxChildSize: 0.65,
-          builder: (context, scrollController) {
-            return Container(
+        body: SizedBox.expand(
+      child: Stack(children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: _imageHeight,
+          child: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image(
+                height: _imageHeight,
+                width: MediaQuery.of(context).size.width,
+                image: AssetImage("assets/images/bg_detail2.png"),
+                fit: BoxFit.cover,
+              ),
+              Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30.0),
-                        topRight: Radius.circular(30.0))),
-                child: SingleChildScrollView(
-                  physics: NeverScrollableScrollPhysics(),
-                  child: Column(
-                    children: [
-                      Container(
-                          height: 4.04,
-                          width: 60.58,
-                          margin: EdgeInsets.only(top: 10, bottom: 10),
-                          decoration: BoxDecoration(
-                              color: Color(0xFFD8D8D8),
-                              borderRadius: BorderRadius.circular(40))),
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * 0.80,
-                          padding: EdgeInsets.only(
-                              bottom: Themes.marginDefault,
-                              left: Themes.marginDefault,
-                              right: Themes.marginDefault),
-                          child: Consumer<ItemListProvider>(
-                            builder: (context, itemListProvider, _) {
-                              return ListView.builder(
-                                  controller: scrollController,
-                                  itemCount:
-                                      itemListProvider.dataItemList.length,
-                                  itemBuilder: (BuildContext context,
-                                          int index) =>
-                                      Container(
-                                          margin: EdgeInsets.only(bottom: 30),
-                                          child: cardItem(
-                                              context,
-                                              itemListProvider
-                                                  .dataItemList[index],
-                                              index)));
+                    gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [Colors.transparent, Colors.black])),
+              ),
+              Positioned(
+                  top: 8 + MediaQuery.of(context).padding.top,
+                  left: Themes.marginDefault,
+                  right: Themes.marginDefault,
+                  child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        InkWell(
+                            onTap: () {
+                              Navigator.of(context).pop();
                             },
-                          ))
+                            child: Container(
+                                padding: EdgeInsets.all(9),
+                                decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.black.withOpacity(0.3)),
+                                child: Icon(MdiIcons.chevronLeft,
+                                    color: Colors.white, size: 18))),
+                        Container(
+                          padding: EdgeInsets.all(9),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(0.3)),
+                          child: Icon(MdiIcons.shareVariant,
+                              color: Colors.white, size: 18),
+                        ),
+                      ])),
+              Positioned(
+                top: _titlePosition,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bakmi JM",
+                        style: Themes.fontBold.copyWith(
+                            color: Colors.white,
+                            fontWeight: FontWeight.w600,
+                            fontSize: 14),
+                      ),
+                      SizedBox(height: 10),
+                      RatingStars(
+                        voteAverage: 10,
+                        starSize: 18.0,
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.place,
+                            color: Colors.red[300],
+                            size: 18,
+                          ),
+                          SizedBox(
+                            width: 12.62,
+                          ),
+                          Text(
+                            "Jl. Mampang Prapatan XIV Jakarta Selatan",
+                            style: Themes.fontBold.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 10),
+                          )
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            MdiIcons.clockTimeTwelveOutline,
+                            color: Colors.white,
+                            size: 16,
+                          ),
+                          SizedBox(
+                            width: 12.62,
+                          ),
+                          Text(
+                            "Buka",
+                            style: Themes.fontBold.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 10),
+                          ),
+                          SizedBox(width: 8),
+                          Text(
+                            "08:00 - 20:00 WIB",
+                            style: Themes.fontBold.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.normal,
+                                fontSize: 10),
+                          )
+                        ],
+                      )
                     ],
                   ),
-                ));
-          })
-    ]));
+                ),
+              )
+            ],
+          ),
+        ),
+        NotificationListener<DraggableScrollableNotification>(
+          onNotification: (notif) {
+            double _newRatio =
+                _screenHeight - (notif.extent * _screenHeight) + 51;
+            if (notif.extent < 0.70) {
+              setState(() {
+                _imageHeight = _newRatio;
+                _titlePosition = _imageHeight - _titlePadding;
+              });
+            } else {
+              setState(() {
+                if (notif.extent - _prevExtent > 0) {
+                  _titlePosition = _titlePosition - notif.extent;
+                } else {
+                  if (_titlePosition < _initialTitlePosition) {
+                    _titlePosition = _titlePosition + (notif.extent * 2);
+                  }
+                }
+              });
+            }
+            _prevExtent = notif.extent;
+            return true;
+          },
+          child: DraggableScrollableSheet(
+              initialChildSize: 0.7,
+              minChildSize: 0.06,
+              maxChildSize: 0.9,
+              builder: (context, scrollController) {
+                controllerNew = scrollController;
+                scrollController.addListener(() {
+                  if (upArrowFloating == false) {
+                    if (scrollController.offset > 30) {
+                      setState(() {
+                        upArrowFloating = true;
+                      });
+                    }
+                  } else {
+                    if (scrollController.offset < 30) {
+                      setState(() {
+                        upArrowFloating = false;
+                      });
+                    }
+                  }
+                });
+                return Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(30.0),
+                            topRight: Radius.circular(30.0))),
+                    child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
+                      child: Column(
+                        children: [
+                          Container(
+                              height: 4.04,
+                              width: 60.58,
+                              margin: EdgeInsets.only(top: 10, bottom: 10),
+                              decoration: BoxDecoration(
+                                  color: Color(0xFFD8D8D8),
+                                  borderRadius: BorderRadius.circular(40))),
+                          Container(
+                              width: MediaQuery.of(context).size.width,
+                              height: MediaQuery.of(context).size.height,
+                              child: Stack(children: [
+                                ListView(
+                                    padding: EdgeInsets.only(top: 0),
+                                    controller: scrollController,
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.only(
+                                              left: Themes.marginDefault,
+                                              right: Themes.marginDefault,
+                                              bottom: 19),
+                                          child: Text(
+                                            "Menu Favorit",
+                                            style: Themes.fontBold,
+                                          )),
+                                      HomeNews(),
+                                      Consumer<ItemListProvider>(
+                                        builder:
+                                            (context, itemListProvider, _) {
+                                          return Center(
+                                              child: Stack(children: [
+                                            Column(children: [
+                                              Column(
+                                                  children: List.generate(
+                                                      itemListProvider
+                                                          .dataItemList.length,
+                                                      (index) => Container(
+                                                          margin:
+                                                              EdgeInsets.only(
+                                                                  bottom: 30),
+                                                          child: cardItem(
+                                                              context,
+                                                              itemListProvider
+                                                                      .dataItemList[
+                                                                  index],
+                                                              index))).toList()),
+                                              SizedBox(height: 64 + 120.0)
+                                            ]),
+                                          ]));
+                                        },
+                                      ),
+                                    ]),
+                                AnimatedPositioned(
+                                    bottom:
+                                        upArrowFloating == true ? 130 : -150,
+                                    left: MediaQuery.of(context).size.width *
+                                        0.04,
+                                    duration: Duration(milliseconds: 450),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, '/detail-order');
+                                      },
+                                      child: Container(
+                                        height: 64,
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 20),
+                                        width:
+                                            MediaQuery.of(context).size.width -
+                                                Themes.marginDefault * 2,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Color(0xFFC41622)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                                'assets/icons/svg/keranjang-on.svg',
+                                                semanticsLabel: 'Acme Logo'),
+                                            SizedBox(
+                                                width: Themes.marginDefault),
+                                            Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "3 Item",
+                                                  style: Themes.fontNormal
+                                                      .copyWith(
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontSize: 14),
+                                                ),
+                                                Text(
+                                                  "Bakmi JM Gajah Mada...",
+                                                  style: Themes.fontNormal
+                                                      .copyWith(
+                                                          color: Colors.white,
+                                                          fontSize: 12),
+                                                ),
+                                              ],
+                                            ),
+                                            Spacer(),
+                                            Text(
+                                              "Rp. 18.000",
+                                              style: Themes.fontBold.copyWith(
+                                                  fontSize: 14,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ))
+                              ]))
+                        ],
+                      ),
+                    ));
+              }),
+        )
+      ]),
+    ));
   }
 
   Widget cardItem(BuildContext context, ModelListItem data, int index) {

@@ -63,7 +63,7 @@ class ItemListProvider with ChangeNotifier {
         name: "Bakmi Spesial",
         desc:
             "Bakmi komplit yang cocok buat akhir bulan tapi tetep pengen makan kenyang",
-        price: 1800,
+        price: 32000,
         discount: 2500,
         quantity: 0),
   ];

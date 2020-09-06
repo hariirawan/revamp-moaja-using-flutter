@@ -6,6 +6,8 @@ class ShopPage extends StatefulWidget {
 }
 
 class _ShopPageState extends State<ShopPage> {
+  ScrollController _scrollController = new ScrollController();
+
   final List<String> data = [
     "Makanan",
     "Minuman",
@@ -22,23 +24,48 @@ class _ShopPageState extends State<ShopPage> {
   );
 
   int initialState = 0;
+  bool upArrowFloating = false;
 
   @override
   void initState() {
     super.initState();
 
-    SystemChrome.setSystemUIOverlayStyle(
-        SystemUiOverlayStyle(statusBarColor: Colors.red));
+    _scrollController.addListener(scrollPage);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void scrollPage() {
+    // var valueScroll = _scrollController.offset.round();
+    if (upArrowFloating == false) {
+      if (_scrollController.offset > 30) {
+        setState(() {
+          upArrowFloating = true;
+        });
+      }
+    } else {
+      if (_scrollController.offset < 30) {
+        setState(() {
+          upArrowFloating = false;
+        });
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
 
+    print(upArrowFloating);
     return SafeArea(
         top: false,
         child: Stack(children: [
           ListView(
+            controller: _scrollController,
             padding: EdgeInsets.all(0.0),
             children: [
               BannerHead(
@@ -161,52 +188,55 @@ class _ShopPageState extends State<ShopPage> {
               dailyNeeds(context),
             ],
           ),
-          Positioned(
+          AnimatedPositioned(
+              bottom: upArrowFloating == true ? 32 : -150,
               left: width / 2 - 160 / 2,
-              bottom: 20,
-              child: Container(
-                width: 160,
-                height: 56,
-                decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                          color: Color.fromRGBO(197, 23, 35, 0.4),
-                          blurRadius: 15,
-                          offset: Offset(4, 4))
-                    ],
-                    gradient: LinearGradient(colors: [
-                      Color.fromRGBO(225, 26, 40, 0.8),
-                      Color.fromRGBO(197, 22, 34, 0.8)
-                    ], begin: Alignment.topCenter, end: Alignment.topCenter),
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.circular(50)),
-                child: Align(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.shopping_basket,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                      SizedBox(width: 9.8),
-                      Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "3 Items",
-                              style: TextStyle(color: Colors.white),
-                            ),
-                            Text(
-                              "Rp. 30000",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          ]),
-                    ],
+              duration: Duration(milliseconds: 500),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/detail-order');
+                },
+                child: Container(
+                  width: 160,
+                  height: 56,
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                            color: Color.fromRGBO(197, 23, 35, 0.4),
+                            blurRadius: 15,
+                            offset: Offset(4, 4))
+                      ],
+                      gradient: LinearGradient(colors: [
+                        Color.fromRGBO(225, 26, 40, 0.8),
+                        Color.fromRGBO(197, 22, 34, 0.8)
+                      ], begin: Alignment.topCenter, end: Alignment.topCenter),
+                      color: Colors.blue,
+                      borderRadius: BorderRadius.circular(50)),
+                  child: Align(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SvgPicture.asset('assets/icons/svg/keranjang-on.svg',
+                            semanticsLabel: 'Acme Logo'),
+                        SizedBox(width: 9.8),
+                        Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "3 Items",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              Text(
+                                "Rp. 30000",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ]),
+                      ],
+                    ),
                   ),
                 ),
               )),

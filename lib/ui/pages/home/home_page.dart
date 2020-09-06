@@ -233,7 +233,12 @@ class _HomePageState extends State<HomePage> {
                             Spacer(),
                             Align(
                                 child: Button(
-                              label: "Cobain",
+                              label: Text(
+                                "Cobain",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white),
+                              ),
                               btnColor: Themes.mainColors,
                               paddingH: 15,
                               paddingV: 4,

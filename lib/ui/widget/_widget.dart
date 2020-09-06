@@ -3,7 +3,8 @@ import 'package:mo_aja/model/_model.dart';
 import 'package:mo_aja/shared/_shared.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-part 'button.dart';
+part 'atoms/button.dart';
+
 part 'separator.dart';
 part 'app_bar_ui.dart';
 part 'title_view.dart';
