@@ -67,7 +67,7 @@ class CardNeeds extends StatelessWidget {
         children: [
           Text(
             title,
-            style: Themes.fontBold,
+            style: Themes.fontMontserrat,
           ),
           Spacer(),
           RatingStars(
@@ -83,7 +83,7 @@ class CardNeeds extends StatelessWidget {
       ),
       Text(
         desc,
-        style: Themes.fontNormal,
+        style: Themes.fontOpenSans,
       ),
       Container(
         margin: EdgeInsets.only(top: 10),
@@ -92,7 +92,7 @@ class CardNeeds extends StatelessWidget {
           children: [
             Text(
               "Rp.5000",
-              style: Themes.fontBold,
+              style: Themes.fontMontserrat,
             ),
             Spacer(),
             Container(

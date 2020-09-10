@@ -10,19 +10,19 @@ class ModelMenus {
 
 List<ModelMenus> menus = [
   ModelMenus(
-      icon: 'assets/menu/cemilan.png',
+      icon: 'assets/icons/menu/cemilan.png',
       name: "Makanan\nMinuman",
       color: Color(0xFFEA1D25)),
   ModelMenus(
-      icon: 'assets/menu/kebutuhan-harian.png',
+      icon: 'assets/icons/menu/kebutuhan-harian.png',
       name: "Cemilan",
       color: Color(0xFFFF730B)),
   ModelMenus(
-      icon: 'assets/menu/makanan-minuman.png',
+      icon: 'assets/icons/menu/makanan-minuman.png',
       name: "Menu\nSehat",
       color: Color(0xFF72AA29)),
   ModelMenus(
-      icon: 'assets/menu/makanan-sehat.png',
+      icon: 'assets/icons/menu/makanan-sehat.png',
       name: "Kebutuhan\nHarian",
       color: Color(0xFF44BDAA)),
 ];

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mo_aja/provider/_provider.dart';
 import 'package:mo_aja/shared/_shared.dart';
+import 'package:mo_aja/ui/pages/courier-track/_courier_track.dart';
 import 'package:mo_aja/ui/pages/detail-order/_detail_order.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
 import 'package:mo_aja/ui/pages/shop/_shop.dart';
@@ -9,7 +10,8 @@ import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ItemListProvider>(create: (_) => ItemListProvider()),
+    ChangeNotifierProvider<ListItemProvider>(create: (_) => ListItemProvider()),
+    ChangeNotifierProvider<PaymentProvider>(create: (_) => PaymentProvider()),
   ], child: MyApp()));
 }
 
@@ -30,10 +32,10 @@ class MyApp extends StatelessWidget {
         );
       },
       '/detail-order': (context) {
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          child: Scaffold(body: DetailOrder()),
-        );
+        return Scaffold(body: DetailOrder());
+      },
+      '/courier-track': (context) {
+        return Scaffold(body: CourierTrack());
       },
     };
   }
@@ -83,8 +85,8 @@ class _LayoutState extends State<Layout> {
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 0
-                        ? 'assets/icon-navigation/Home.png'
-                        : 'assets/icon-navigation/Home-grey.png',
+                        ? 'assets/icons/icon-navigation/Home.png'
+                        : 'assets/icons/icon-navigation/Home-grey.png',
                     scale: 4,
                   )),
               title: Text(
@@ -98,8 +100,8 @@ class _LayoutState extends State<Layout> {
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 1
-                        ? 'assets/icon-navigation/Document.png'
-                        : 'assets/icon-navigation/Document-grey.png',
+                        ? 'assets/icons/icon-navigation/Document.png'
+                        : 'assets/icons/icon-navigation/Document-grey.png',
                     scale: 4,
                   )),
               title: Text("Aktifitas",
@@ -112,8 +114,8 @@ class _LayoutState extends State<Layout> {
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 2
-                        ? 'assets/icon-navigation/Group.png'
-                        : 'assets/icon-navigation/Group-grey.png',
+                        ? 'assets/icons/icon-navigation/Group.png'
+                        : 'assets/icons/icon-navigation/Group-grey.png',
                     scale: 4,
                   )),
               title: Text("Keranjang",
@@ -126,8 +128,8 @@ class _LayoutState extends State<Layout> {
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 3
-                        ? 'assets/icon-navigation/Profile.png'
-                        : 'assets/icon-navigation/Profile-grey.png',
+                        ? 'assets/icons/icon-navigation/Profile.png'
+                        : 'assets/icons/icon-navigation/Profile-grey.png',
                     scale: 4,
                   )),
               title: Text(

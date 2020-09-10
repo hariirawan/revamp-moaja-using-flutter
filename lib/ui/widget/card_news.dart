@@ -27,7 +27,7 @@ class CardNews extends StatelessWidget {
               children: [
                 Text(
                   "Ini 53 Tokoh Penerima Bintang Tan...",
-                  style: Themes.fontBold
+                  style: Themes.fontMontserrat
                       .copyWith(fontSize: 12, letterSpacing: 0.2),
                 ),
                 Container(
@@ -37,7 +37,7 @@ class CardNews extends StatelessWidget {
                       "Presiden Joko Widodo atau Jokowi enganugerahkan tanda jasa dan tanda kehormatan kepada 53 tokoh...",
                       maxLines: 2,
                       overflow: TextOverflow.clip,
-                      style: Themes.fontNormal,
+                      style: Themes.fontOpenSans,
                     ))
               ],
             ),

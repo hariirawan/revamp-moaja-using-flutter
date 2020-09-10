@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
       padding: EdgeInsets.all(0.0),
       children: <Widget>[
         BannerHead(
-          banner: 'assets/banner/banner-green.png',
+          banner: 'assets/images/banner/banner-green.png',
           children: Container(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                         children: [
                           Text(
                             "Halo, Lutfi!",
-                            style: Themes.fontBold
+                            style: Themes.fontMontserrat
                                 .copyWith(fontSize: 22, color: Colors.white),
                           ),
                           Container(
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
                               child: Row(children: [
                                 Text(
                                   "Alamat pengiriman",
-                                  style: Themes.fontNormal.copyWith(
+                                  style: Themes.fontOpenSans.copyWith(
                                       fontSize: 10, color: Colors.white),
                                 ),
                                 SizedBox(
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                                 ),
                                 Text(
                                   "Jl. Kuningan Barat",
-                                  style: Themes.fontNormal.copyWith(
+                                  style: Themes.fontOpenSans.copyWith(
                                       fontSize: 10,
                                       color: Colors.white,
                                       fontWeight: FontWeight.w600),
@@ -155,9 +155,10 @@ class _HomePageState extends State<HomePage> {
                                           padding: EdgeInsets.only(top: 8),
                                           alignment: Alignment.topCenter,
                                           child: Text(e.name,
-                                              style: Themes.fontBold.copyWith(
-                                                  color: Colors.white,
-                                                  fontSize: 10)),
+                                              style: Themes.fontMontserrat
+                                                  .copyWith(
+                                                      color: Colors.white,
+                                                      fontSize: 10)),
                                         ),
                                       )),
                                   Positioned(
@@ -192,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                       color: Color(0xFFE5E5E5))
                 ],
                 image: DecorationImage(
-                    image: AssetImage('assets/banner/food.png'),
+                    image: AssetImage('assets/images/banner/food.png'),
                     fit: BoxFit.cover),
                 color: Colors.green,
                 borderRadius: BorderRadius.circular(6)),
@@ -214,7 +215,8 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Text(
                         "FoodCourt",
-                        style: Themes.fontBold.copyWith(color: Colors.white),
+                        style:
+                            Themes.fontMontserrat.copyWith(color: Colors.white),
                       ),
                       Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
@@ -227,7 +229,7 @@ class _HomePageState extends State<HomePage> {
                                   "Kamu bisa pesen banyak dari banyak Merchant dengan satu ongkir",
                                   maxLines: 2,
                                   overflow: TextOverflow.clip,
-                                  style: Themes.fontNormal
+                                  style: Themes.fontOpenSans
                                       .copyWith(color: Colors.white)),
                             ),
                             Spacer(),

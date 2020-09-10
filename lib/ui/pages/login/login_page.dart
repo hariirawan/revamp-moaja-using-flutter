@@ -36,7 +36,8 @@ class _LoginPageState extends State<LoginPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 102),
-                Center(child: SizedBox(child: Image.asset('assets/icon.png'))),
+                Center(
+                    child: SizedBox(child: Image.asset('assets/icons/icon'))),
                 SizedBox(height: 32.39),
                 Text(
                   "Welcome",
