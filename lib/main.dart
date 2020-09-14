@@ -5,6 +5,7 @@ import 'package:mo_aja/shared/_shared.dart';
 import 'package:mo_aja/ui/pages/courier-track/_courier_track.dart';
 import 'package:mo_aja/ui/pages/detail-order/_detail_order.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
+import 'package:mo_aja/ui/pages/profile/_profile.dart';
 import 'package:mo_aja/ui/pages/shop/_shop.dart';
 import 'package:provider/provider.dart';
 
@@ -37,6 +38,11 @@ class MyApp extends StatelessWidget {
       '/courier-track': (context) {
         return Scaffold(body: CourierTrack());
       },
+      '/my-review': (context) {
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: const SystemUiOverlayStyle(statusBarColor: Colors.green),
+            child: Scaffold(body: Review()));
+      },
     };
   }
 
@@ -66,9 +72,7 @@ class _LayoutState extends State<Layout> {
     Acitvity(
       label: "Keranjang",
     ),
-    Acitvity(
-      label: "Masuk",
-    ),
+    Profile(),
   ];
 
   void _onTabItem(int index) {
@@ -79,6 +83,7 @@ class _LayoutState extends State<Layout> {
 
   Widget _menuNavigation() => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Padding(
@@ -133,7 +138,7 @@ class _LayoutState extends State<Layout> {
                     scale: 4,
                   )),
               title: Text(
-                "Masuk",
+                "Profile",
                 style: TextStyle(
                     color:
                         _selectedIndex == 3 ? Themes.green : Color(0xFFBDBDBD)),

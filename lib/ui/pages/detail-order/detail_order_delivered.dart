@@ -1,7 +1,18 @@
 part of '_detail_order.dart';
 
-class DetailOrderDelivered extends StatelessWidget {
-  const DetailOrderDelivered({Key key}) : super(key: key);
+class DetailOrderDelivered extends StatefulWidget {
+  @override
+  _DetailOrderDeliveredState createState() => _DetailOrderDeliveredState();
+}
+
+class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
+  String _character;
+
+  @override
+  void initState() {
+    super.initState();
+    _character = null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +155,10 @@ class DetailOrderDelivered extends StatelessWidget {
                         Button(
                           outline: true,
                           btnColor: Themes.red,
+                          onTap: () {
+                            Navigator.pop(context);
+                            _modalCancel(context);
+                          },
                           label: Text("Batal",
                               style: Themes.fontMontserrat14600
                                   .copyWith(color: Themes.red)),
@@ -219,58 +234,248 @@ class DetailOrderDelivered extends StatelessWidget {
           );
         });
   }
+
+  void _modalCancel(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        ),
+        builder: (context) {
+          return Consumer<PaymentProvider>(
+            builder: (context, payment, _) {
+              return Container(
+                height: MediaQuery.of(context).size.height / 2,
+                child: SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    child: Container(
+                      child: Column(children: [
+                        Container(
+                            height: 4.04,
+                            width: 60.58,
+                            margin: EdgeInsets.only(top: 10, bottom: 15.96),
+                            decoration: BoxDecoration(
+                                color: Color(0xFFD8D8D8),
+                                borderRadius: BorderRadius.circular(40))),
+                        SizedBox(height: 51),
+                        Container(
+                          width: 188,
+                          height: 121,
+                          margin: EdgeInsets.only(bottom: 40),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Themes.greyE5),
+                        ),
+                        Text(
+                          "Yakin mau batalin pesanan?",
+                          style: Themes.fontMontserrat16Bold,
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          "Kamu yakin mau batalin pesanan ini",
+                          style: Themes.fontMontserrat10,
+                        ),
+                        SizedBox(
+                          height: 53,
+                        ),
+                        Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Button(
+                                onTap: () {
+                                  // Navigator.pushNamed(context, '/courier-track');
+                                },
+                                paddingH: 40,
+                                btnColor: Themes.green,
+                                label: Text("Tidak",
+                                    style: Themes.fontMontserrat14600
+                                        .copyWith(color: Colors.white)),
+                                borderRadius: 10,
+                              ),
+                              SizedBox(width: 20),
+                              Button(
+                                onTap: () {
+                                  // Navigator.pushNamed(context, '/courier-track');
+                                  Navigator.pop(context);
+                                  _modalCancelYes(context, _character);
+                                },
+                                paddingH: 40,
+                                btnColor: Themes.red,
+                                label: Text("Ya",
+                                    style: Themes.fontMontserrat14600
+                                        .copyWith(color: Colors.white)),
+                                borderRadius: 10,
+                              )
+                            ])
+                      ]),
+                    )),
+              );
+            },
+          );
+        });
+  }
+
+  void _modalCancelYes(BuildContext context, String _character) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        ),
+        builder: (context) {
+          return Consumer<PaymentProvider>(
+            builder: (context, payment, _) {
+              return Container(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: SingleChildScrollView(
+                    physics: NeverScrollableScrollPhysics(),
+                    child: ListReason()),
+              );
+            },
+          );
+        });
+  }
 }
 
-class CountingDown extends StatefulWidget {
-  final Function navigate;
-
-  CountingDown({this.navigate});
-
+class ListReason extends StatefulWidget {
   @override
-  _CountingDownState createState() => _CountingDownState();
+  _ListReasonState createState() => _ListReasonState();
 }
 
-class _CountingDownState extends State<CountingDown> {
-  Timer _timer;
-  int _start = 10;
+class _ListReasonState extends State<ListReason> {
+  final List<String> _reason = [
+    "Barang atau layanan tidak tersedia!",
+    "Lokasi Merchant terlalu jauh",
+    "Berubah pikiran",
+    "Melewati batas maksimal pemesanan",
+    "Lainnya",
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    this.startTimer();
-  }
-
-  @override
-  void dispose() {
-    _timer.cancel();
-    super.dispose();
-  }
-
-  void startTimer() {
-    const oneSec = const Duration(seconds: 1);
-    _timer = new Timer.periodic(
-      oneSec,
-      (Timer timer) => setState(
-        () {
-          if (_start == 1) {
-            if (widget.navigate != null) {
-              widget.navigate();
-            }
-            timer.cancel();
-          } else {
-            _start = _start - 1;
-          }
-        },
-      ),
-    );
-  }
+  String _character;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text(
-        "$_start Detik",
-        style: Themes.fontMontserrat16Bold,
+    return SingleChildScrollView(
+      // physics: NeverScrollableScrollPhysics(),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 22),
+        child: Column(children: [
+          Container(
+              height: 4.04,
+              width: 60.58,
+              margin: EdgeInsets.only(top: 10, bottom: 15.96),
+              decoration: BoxDecoration(
+                  color: Color(0xFFD8D8D8),
+                  borderRadius: BorderRadius.circular(40))),
+          Container(
+              height: MediaQuery.of(context).size.height,
+              child: ListView(children: [
+                SizedBox(height: 51),
+                Column(children: [
+                  Container(
+                    width: 188,
+                    height: 121,
+                    margin: EdgeInsets.only(bottom: 40),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Themes.greyE5),
+                  ),
+                  Text(
+                    "Pesanan dibatalkan",
+                    style: Themes.fontMontserrat16Bold,
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    "Beri alasan kenapa kamu ingin membatalkan pesanan ini:",
+                    style: Themes.fontMontserrat10,
+                  ),
+                ]),
+                SizedBox(
+                  height: 27,
+                ),
+                Column(
+                  children: List.generate(_reason.length, (index) {
+                    return Row(children: [
+                      Radio(
+                        value: _reason[index],
+                        groupValue: _character,
+                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        onChanged: (String value) {
+                          print(value);
+                          setState(() {
+                            _character = value;
+                          });
+                        },
+                      ),
+                      Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _character = _reason[index];
+                                });
+                              },
+                              child: Text(_reason[index]),
+                            ),
+                          ])
+                    ]);
+                  }).toList(),
+                ),
+                _character == "Lainnya"
+                    ? Container(
+                        padding: EdgeInsets.only(left: 40),
+                        child: TextField(
+                            maxLines: 3,
+                            decoration: InputDecoration(
+                                hintText: "Tulis disini",
+                                hintStyle: TextStyle(
+                                    color: Color(0xFFBDBDBD), fontSize: 12),
+                                filled: true,
+                                fillColor: Color(0xFFF9F9F9),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 10.0, horizontal: 10),
+                                border: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Color(0xFFBDBDBD))))))
+                    : SizedBox(),
+                SizedBox(
+                  height: 40,
+                ),
+                Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Button(
+                        onTap: () {
+                          // Navigator.pushNamed(context, '/courier-track');
+                        },
+                        paddingH: 40,
+                        btnColor: Themes.green,
+                        label: Text("Tidak",
+                            style: Themes.fontMontserrat14600
+                                .copyWith(color: Colors.white)),
+                        borderRadius: 10,
+                      ),
+                      SizedBox(width: 20),
+                      Button(
+                        onTap: () {
+                          // Navigator.pushNamed(context, '/courier-track');
+                        },
+                        paddingH: 40,
+                        btnColor: Themes.red,
+                        label: Text("Ya, Lanjutkan",
+                            style: Themes.fontMontserrat14600
+                                .copyWith(color: Colors.white)),
+                        borderRadius: 10,
+                      )
+                    ])
+              ]))
+        ]),
       ),
     );
   }

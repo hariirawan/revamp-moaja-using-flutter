@@ -51,11 +51,15 @@ class Themes {
     fontSize: 12,
   );
 
+  static TextStyle fontOpenSans8 = GoogleFonts.openSans().copyWith(
+    color: Color(0xFF4D4D4D),
+    fontSize: 8,
+  );
+
   static TextStyle fontOpenSans = GoogleFonts.openSans().copyWith(
     color: Color(0xFF4D4D4D),
     fontSize: 10,
   );
-
   static TextStyle fontOpenSans14Bold = GoogleFonts.openSans().copyWith(
       color: Color(0xFF4D4D4D), fontSize: 14, fontWeight: FontWeight.bold);
 

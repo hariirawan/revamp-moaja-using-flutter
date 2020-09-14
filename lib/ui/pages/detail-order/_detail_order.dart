@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mo_aja/model/_model.dart';
 import 'package:mo_aja/provider/_provider.dart';
