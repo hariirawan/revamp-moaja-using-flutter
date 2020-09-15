@@ -27,14 +27,15 @@ class TitleView extends StatelessWidget {
               title,
               style: TextStyle(
                 color: Colors.black,
-                fontSize: width / 24,
-                fontWeight: FontWeight.w600,
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
               ),
             ),
             SizedBox(height: 7),
             Text(
               subtitle,
-              style: TextStyle(color: colorSub, fontSize: width / 30),
+              style: TextStyle(
+                  color: colorSub, fontSize: 10, fontWeight: FontWeight.bold),
             ),
           ],
         ),

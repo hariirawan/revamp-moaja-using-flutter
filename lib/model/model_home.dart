@@ -10,13 +10,13 @@ class ModelRecomended {
 
 List<ModelRecomended> dummyData = [
   ModelRecomended(
-      image: 'assets/image/recomended.png', star: 5, name: "Bakmi JM"),
+      image: 'assets/images/recomended.png', star: 5, name: "Bakmi JM"),
   ModelRecomended(
-      image: 'assets/image/recomended.png', star: 5, name: "Bakmi JM"),
+      image: 'assets/images/bg_resto.png', star: 5, name: "Bakmi JM"),
   ModelRecomended(
-      image: 'assets/image/recomended.png', star: 5, name: "Bakmi JM"),
+      image: 'assets/images/bg_detail2.png', star: 5, name: "Bakmi JM"),
   ModelRecomended(
-      image: 'assets/image/recomended.png', star: 5, name: "Bakmi JM"),
+      image: 'assets/images/recomended.png', star: 5, name: "Bakmi JM"),
   ModelRecomended(
-      image: 'assets/image/recomended.png', star: 5, name: "Bakmi JM"),
+      image: 'assets/images/recomended.png', star: 5, name: "Bakmi JM"),
 ];

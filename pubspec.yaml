@@ -32,6 +32,9 @@ dependencies:
   google_fonts: ^1.1.0
   smooth_page_indicator: ^0.2.0
   provider: ^4.3.2
+  flutter_svg: ^0.18.1
+  lottie: ^0.6.0
+  url_launcher: ^5.5.3
 
 dev_dependencies:
   flutter_test:
@@ -39,7 +42,6 @@ dev_dependencies:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
-
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is
@@ -50,9 +52,15 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/
-    - assets/icon-home/
-    - assets/image/
-    - assets/icon-navigation/
+    - assets/icons/icon-home/
+    - assets/images/
+    - assets/icons/icon-navigation/
+    - assets/icons/menu/
+    - assets/icons/moaja-profil/
+    - assets/images/banner/
+    - assets/images/courier/
+    - assets/icons/
+    - assets/icons/svg/
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,4 +1,4 @@
-part of '_home.dart';
+part of '_widget.dart';
 
 class BannerSlide extends StatefulWidget {
   @override
@@ -20,7 +20,7 @@ class _BannerSlideState extends State<BannerSlide> {
     double width = MediaQuery.of(context).size.width;
 
     return Column(children: [
-      SizedBox(
+      Container(
           height: 150,
           child: PageView(
               pageSnapping: true,
@@ -31,10 +31,10 @@ class _BannerSlideState extends State<BannerSlide> {
                         margin: EdgeInsets.only(left: 20, right: 20),
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage('assets/image/banner.png'),
+                                image: AssetImage('assets/images/banner.png'),
                                 fit: BoxFit.cover),
                             borderRadius: BorderRadius.circular(10)),
-                        height: 183,
+                        height: 150,
                         width:
                             width - Themes.marginDefault - Themes.marginDefault,
                         child: Center(child: Text("#Makan Aja")),

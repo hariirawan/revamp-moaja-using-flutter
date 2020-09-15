@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:mo_aja/provider/_provider.dart';
+import 'package:mo_aja/routes.dart';
+import 'package:mo_aja/shared/_shared.dart';
+import 'package:mo_aja/ui/pages/courier-track/_courier_track.dart';
+import 'package:mo_aja/ui/pages/detail-order/_detail_order.dart';
 import 'package:mo_aja/ui/pages/home/_home.dart';
+import 'package:mo_aja/ui/pages/profile/_profile.dart';
+import 'package:mo_aja/ui/pages/shop/_shop.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider<ItemListProvider>(create: (_) => ItemListProvider()),
+    ChangeNotifierProvider<ListItemProvider>(create: (_) => ListItemProvider()),
+    ChangeNotifierProvider<PaymentProvider>(create: (_) => PaymentProvider()),
   ], child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-          primaryColor: Colors.green[300], primarySwatch: Colors.green),
-      home: Layout(),
+      initialRoute: '/',
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
@@ -38,9 +44,7 @@ class _LayoutState extends State<Layout> {
     Acitvity(
       label: "Keranjang",
     ),
-    Acitvity(
-      label: "Masuk",
-    ),
+    Profile(),
   ];
 
   void _onTabItem(int index) {
@@ -51,47 +55,66 @@ class _LayoutState extends State<Layout> {
 
   Widget _menuNavigation() => BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 0
-                        ? 'assets/icon-navigation/Home.png'
-                        : 'assets/icon-navigation/Home-grey.png',
+                        ? 'assets/icons/icon-navigation/Home.png'
+                        : 'assets/icons/icon-navigation/Home-grey.png',
                     scale: 4,
                   )),
-              title: Text("Beranda")),
+              title: Text(
+                "Beranda",
+                style: TextStyle(
+                    color:
+                        _selectedIndex == 0 ? Themes.green : Color(0xFFBDBDBD)),
+              )),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 1
-                        ? 'assets/icon-navigation/Document.png'
-                        : 'assets/icon-navigation/Document-grey.png',
+                        ? 'assets/icons/icon-navigation/Document.png'
+                        : 'assets/icons/icon-navigation/Document-grey.png',
                     scale: 4,
                   )),
-              title: Text("Aktifitas")),
+              title: Text("Aktifitas",
+                  style: TextStyle(
+                      color: _selectedIndex == 1
+                          ? Themes.green
+                          : Color(0xFFBDBDBD)))),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 2
-                        ? 'assets/icon-navigation/Group.png'
-                        : 'assets/icon-navigation/Group-grey.png',
+                        ? 'assets/icons/icon-navigation/Group.png'
+                        : 'assets/icons/icon-navigation/Group-grey.png',
                     scale: 4,
                   )),
-              title: Text("Keranjang")),
+              title: Text("Keranjang",
+                  style: TextStyle(
+                      color: _selectedIndex == 2
+                          ? Themes.green
+                          : Color(0xFFBDBDBD)))),
           BottomNavigationBarItem(
               icon: Padding(
                   padding: EdgeInsets.symmetric(vertical: 5.0),
                   child: Image.asset(
                     _selectedIndex == 3
-                        ? 'assets/icon-navigation/Profile.png'
-                        : 'assets/icon-navigation/Profile-grey.png',
+                        ? 'assets/icons/icon-navigation/Profile.png'
+                        : 'assets/icons/icon-navigation/Profile-grey.png',
                     scale: 4,
                   )),
-              title: Text("Masuk")),
+              title: Text(
+                "Profile",
+                style: TextStyle(
+                    color:
+                        _selectedIndex == 3 ? Themes.green : Color(0xFFBDBDBD)),
+              )),
         ],
         currentIndex: _selectedIndex,
         onTap: _onTabItem,

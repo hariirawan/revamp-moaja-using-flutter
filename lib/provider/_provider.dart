@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mo_aja/model/_model.dart';
 
-part 'item_list_provider.dart';
+part 'payment_provider.dart';
+part 'list_item_provider.dart';

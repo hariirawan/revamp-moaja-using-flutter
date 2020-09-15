@@ -2,35 +2,76 @@ part of '_widget.dart';
 
 class CardNeeds extends StatelessWidget {
   final String image;
+  final String title;
+  final double rate;
+  final String desc;
   final Color btnColor;
+  final bool promo;
 
   CardNeeds(
-      {this.image = "assets/image/daily-needs.png",
-      this.btnColor = Themes.mainColors});
+      {this.image = "assets/images/daily-needs.png",
+      this.title = "Makaroni",
+      this.rate = 3.0,
+      this.desc =
+          "Makaroni pedes. enak banget deh, gak bakalan relate pokoknya, siap-siap meninggal..",
+      this.btnColor = Themes.mainColors,
+      this.promo});
 
   @override
   Widget build(BuildContext context) {
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
-        height: 128,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            image:
-                DecorationImage(image: AssetImage(image), fit: BoxFit.cover)),
-      ),
+          height: 131,
+          child: Stack(children: [
+            Positioned(
+                bottom: 0,
+                child: Stack(children: [
+                  Container(
+                    height: 128,
+                    width: MediaQuery.of(context).size.width -
+                        Themes.marginDefault * 2,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        image: DecorationImage(
+                            image: AssetImage(image), fit: BoxFit.cover)),
+                  ),
+                  promo == false
+                      ? SizedBox()
+                      : Container(
+                          height: 128,
+                          width: MediaQuery.of(context).size.width -
+                              Themes.marginDefault * 2,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                      'assets/images/Rectangle 114.png'),
+                                  fit: BoxFit.cover)),
+                        ),
+                ])),
+            Positioned(
+              top: 0,
+              left: 12,
+              child: promo == false
+                  ? SizedBox()
+                  : Image.asset(
+                      'assets/icons/promo-flag.png',
+                      width: 31.145,
+                    ),
+            ),
+          ])),
       SizedBox(
         height: Themes.marginDefault,
       ),
       Row(
         children: [
           Text(
-            "Cuci Salju",
-            style: Themes.fontBold,
+            title,
+            style: Themes.fontMontserrat,
           ),
           Spacer(),
           RatingStars(
-            voteAverage: 3,
+            voteAverage: rate,
             color: Color(0xFFF9DE58),
             fontColor: Colors.black,
             starSize: 20,
@@ -41,8 +82,8 @@ class CardNeeds extends StatelessWidget {
         height: 8,
       ),
       Text(
-        "Cuci mobil kamu gak perlu pusing, pasti hemat dan dijamin bersih! Yuk cobain!",
-        style: Themes.fontNormal,
+        desc,
+        style: Themes.fontOpenSans,
       ),
       Container(
         margin: EdgeInsets.only(top: 10),
@@ -51,7 +92,7 @@ class CardNeeds extends StatelessWidget {
           children: [
             Text(
               "Rp.5000",
-              style: Themes.fontBold,
+              style: Themes.fontMontserrat,
             ),
             Spacer(),
             Container(
