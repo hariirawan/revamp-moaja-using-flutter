@@ -3,14 +3,15 @@ part of '_widget.dart';
 class BannerHead extends StatelessWidget {
   final String banner;
   final Widget children;
+  final double height;
 
-  BannerHead({@required this.banner, this.children});
+  BannerHead({@required this.banner, this.children, this.height = 400});
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     return Container(
-      height: 400,
+      height: height,
       width: width,
       child: Stack(
         children: [

@@ -48,8 +48,14 @@ class InviteFriends extends StatelessWidget {
                 ]),
                 SizedBox(height: 99),
                 Button(
-                    label: Text("Ajak Teman",
-                        style: TextStyle(color: Colors.white)))
+                  label: Center(
+                      child: Text("Ajak Teman",
+                          style: Themes.fontMontserrat16Bold.copyWith(
+                            color: Colors.white,
+                          ))),
+                  paddingV: 20.0,
+                  width: width - 60,
+                )
               ],
             )));
   }

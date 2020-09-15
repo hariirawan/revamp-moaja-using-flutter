@@ -73,30 +73,25 @@ class Profile extends StatelessWidget {
                         ])
                   ],
                 ),
-                Icon(Icons.edit)
+                InkWell(
+                  borderRadius: BorderRadius.circular(50),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute<dynamic>(
+                          builder: (context) => EditProfile())),
+                  child: Padding(
+                      padding: EdgeInsets.all(10), child: Icon(Icons.edit)),
+                )
               ],
             )),
         Divider(),
-        buildInkWell(context,
-            navigate: Review(), title: "Ulasanku", itemCount: "12"),
-        buildInkWell(context,
-            navigate: ReviewFavorite(),
-            title: "Ulasan Favorite",
-            itemCount: "12"),
-        buildInkWell(context,
-            navigate: InviteFriends(), title: "Ajak Teman Pakai MoAja"),
-        ItemList(
-          title: "Kebijakan Privasi",
-        ),
-        ItemList(
-          title: "Ketentuan Layanan",
-        ),
-        ItemList(
-          title: "Bantuan",
-        ),
-        ItemList(
-          title: "FAQ",
-        ),
+        Column(
+            children: List.generate(menuProfile.length, (index) {
+          return buildInkWell(context,
+              title: menuProfile[index].name,
+              icon: menuProfile[index].image,
+              url: menuProfile[index].url);
+        })),
         SizedBox(height: 77),
         Container(
             margin: EdgeInsets.symmetric(horizontal: 30),
@@ -113,23 +108,141 @@ class Profile extends StatelessWidget {
   }
 
   InkWell buildInkWell(BuildContext context,
-      {Widget navigate, String title, String itemCount}) {
+      {Widget navigate,
+      String title,
+      String itemCount,
+      String icon,
+      String url}) {
     return InkWell(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute<dynamic>(builder: (context) => navigate));
+          switch (url) {
+            case '/my-review':
+              return Navigator.push(context,
+                  MaterialPageRoute<dynamic>(builder: (context) => Review()));
+            case '/review-favorite':
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => ReviewFavorite()));
+            case '/faq':
+              return Navigator.push(context,
+                  MaterialPageRoute<dynamic>(builder: (context) => FAQ()));
+
+            case '/terms-of-service':
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => PrivacyPolice(
+                            title: "Ketentuan Layanan",
+                            subTitle: "Ketentuan Layanan MOaja",
+                          )));
+            case '/invite':
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => InviteFriends()));
+            case '/privacy-police':
+              return Navigator.push(
+                  context,
+                  MaterialPageRoute<dynamic>(
+                      builder: (context) => PrivacyPolice(
+                            title: "Kebijakan Privasi",
+                            subTitle: "Kebijakan Privasi MOaja",
+                          )));
+            case '/help':
+              return _modalBantuan(context);
+
+            default:
+              return null;
+          }
         },
         child: ItemList(
           title: title,
           itemCount: itemCount,
+          icon: icon,
         ));
+  }
+
+  _launchPhone() async {
+    const url = "tel:+1 555 010 999";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  _launchEmail() async {
+    const url = "mailto:smith@example.org?subject=News&body=New%20plugin";
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
+  Widget _modalBantuan(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        isScrollControlled: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+        ),
+        builder: (context) {
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.3,
+            child: SingleChildScrollView(
+                physics: NeverScrollableScrollPhysics(),
+                child: Container(
+                  child: Column(children: [
+                    Container(
+                        height: 4.04,
+                        width: 60.58,
+                        margin: EdgeInsets.only(top: 10, bottom: 39),
+                        decoration: BoxDecoration(
+                            color: Color(0xFFD8D8D8),
+                            borderRadius: BorderRadius.circular(40))),
+                    InkWell(
+                      onTap: () => _launchPhone(),
+                      child: ListTile(
+                        leading: Image.asset(
+                            'assets/icons/moaja-profil/logo-telpon.png'),
+                        title: Text(
+                          "Ponsel",
+                          style: Themes.fontOpenSans.copyWith(
+                              fontSize: 18, fontWeight: FontWeight.w600),
+                        ),
+                      ),
+                    ),
+                    InkWell(
+                        onTap: () => _launchEmail(),
+                        child: ListTile(
+                          leading: Image.asset(
+                              'assets/icons/moaja-profil/logo-email.png'),
+                          title: Text("Email",
+                              style: Themes.fontOpenSans.copyWith(
+                                  fontSize: 18, fontWeight: FontWeight.w600)),
+                        )),
+                    ListTile(
+                      leading:
+                          Image.asset('assets/icons/moaja-profil/logo-wa.png'),
+                      title: Text("WhatsApp",
+                          style: Themes.fontOpenSans.copyWith(
+                              fontSize: 18, fontWeight: FontWeight.w600)),
+                    )
+                  ]),
+                )),
+          );
+        });
+    return null;
   }
 }
 
 class ItemList extends StatelessWidget {
   final String title;
   final String itemCount;
-  final Icon icon;
+  final String icon;
 
   ItemList({@required this.title, this.itemCount, this.icon});
 
@@ -142,18 +255,15 @@ class ItemList extends StatelessWidget {
           children: [
             Container(
               width: 16,
-              // padding: EdgeInsets.symmetric(vertical: 19),
               child: Column(children: [
-                Icon(Icons.chat_bubble),
+                Image.asset(icon),
                 Divider(
                   color: Colors.transparent,
                 )
               ]),
             ),
             SizedBox(width: 22),
-            Container(
-              width: MediaQuery.of(context).size.width -
-                  (Themes.marginDefault * 2 + 38),
+            Expanded(
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

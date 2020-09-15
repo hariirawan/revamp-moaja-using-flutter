@@ -63,6 +63,7 @@ class Button extends StatelessWidget {
   final Color btnColor;
   final double paddingH;
   final double paddingV;
+  final double width;
   final Widget label;
   final double borderRadius;
   final Function onTap;
@@ -76,6 +77,7 @@ class Button extends StatelessWidget {
       this.btnColor = Colors.green,
       this.paddingH = 14,
       this.paddingV = 12,
+      this.width,
       this.borderRadius = 62})
       : super(key: key);
 
@@ -91,15 +93,16 @@ class Button extends StatelessWidget {
                 color: btnColor,
                 borderRadius: BorderRadius.circular(borderRadius)),
         child: Material(
-          borderRadius: BorderRadius.circular(borderRadius),
           color: Colors.transparent,
           child: InkWell(
+            borderRadius: BorderRadius.circular(borderRadius),
             onTap: () {
               if (onTap != null) {
                 onTap();
               }
             },
             child: Container(
+                width: width,
                 padding: EdgeInsets.symmetric(
                     horizontal: paddingH, vertical: paddingV),
                 child: label),
