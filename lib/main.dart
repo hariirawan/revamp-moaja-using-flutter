@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:mo_aja/provider/_provider.dart';
+import 'package:mo_aja/routes.dart';
 import 'package:mo_aja/shared/_shared.dart';
 import 'package:mo_aja/ui/pages/courier-track/_courier_track.dart';
 import 'package:mo_aja/ui/pages/detail-order/_detail_order.dart';
@@ -17,41 +18,12 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  Map<String, WidgetBuilder> get routes {
-    return {
-      '/': (context) {
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          child: Layout(),
-        );
-      },
-      '/shop': (context) {
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-          value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
-          child: Scaffold(body: ShopPage()),
-        );
-      },
-      '/detail-order': (context) {
-        return Scaffold(body: DetailOrder());
-      },
-      '/courier-track': (context) {
-        return Scaffold(body: CourierTrack());
-      },
-      '/my-review': (context) {
-        return AnnotatedRegion<SystemUiOverlayStyle>(
-            value: const SystemUiOverlayStyle(statusBarColor: Colors.green),
-            child: Scaffold(body: Review()));
-      },
-    };
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute: '/',
-      routes: routes,
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }

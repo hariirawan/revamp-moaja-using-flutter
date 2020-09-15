@@ -15,7 +15,7 @@ class ReviewFavorite extends StatelessWidget {
               onPressed: () => Navigator.pop(context)),
           centerTitle: true,
           title: Text(
-            "Ulasanku",
+            "Ulasan Favorit",
             style: TextStyle(color: Color(0xFF4D4D4D), fontSize: 16),
           ),
           elevation: 0,
@@ -42,61 +42,111 @@ class ReviewFavorite extends StatelessWidget {
 class CardReviewFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+
     return Container(
-        padding: EdgeInsets.symmetric(horizontal: Themes.marginDefault),
-        child: Row(
+        margin: EdgeInsets.symmetric(
+            horizontal: Themes.marginDefault, vertical: 10),
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  blurRadius: 15 * 0.4,
+                  spreadRadius: 1,
+                  offset: Offset(0, 0),
+                  color: Color.fromRGBO(0, 0, 0, 0.15))
+            ]),
+        child: Column(
           children: [
             Container(
-              height: 80,
-              width: 80,
+              height: 447 - 197.0,
+              width: width - Themes.marginDefault * 2,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(6),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
                   image: DecorationImage(
-                      image: AssetImage('assets/images/image-review.png'),
+                      image: AssetImage('assets/images/recommended1.png'),
                       fit: BoxFit.cover)),
             ),
-            SizedBox(width: 20),
             Container(
-                width: MediaQuery.of(context).size.width -
-                    (Themes.marginDefault * 2 + 100),
+                padding: EdgeInsets.symmetric(horizontal: 20.94, vertical: 20),
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Bakmi Komplit",
-                        style: Themes.fontMontserrat14600,
-                      ),
-                      Text(
-                        "Enak banget, gatau lagi, mo beli lagi tapi takut beli mulu. tapi kalo dibayarin kamu",
-                        maxLines: 3,
-                        style: Themes.fontOpenSans12,
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                          height: 18,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              height: 32.17,
+                              width: 32.17,
+                              margin: EdgeInsets.only(right: 6.96),
+                              decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                          'assets/images/courier/foto-courier.png'),
+                                      fit: BoxFit.cover),
+                                  shape: BoxShape.circle),
+                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Nunu",
+                                  style: Themes.fontMontserrat12600,
+                                ),
+                                Text(
+                                  "Today 1:02 PM",
+                                  style: Themes.fontMontserrat10,
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                        Row(children: [
+                          Icon(Icons.favorite, color: Themes.red),
+                          SizedBox(width: 18.33),
+                          Icon(
+                            Icons.mode_comment,
+                            color: Colors.grey[400],
+                          ),
+                          SizedBox(width: 18.33),
+                          Icon(
+                            Icons.share,
+                            color: Colors.grey[400],
+                          ),
+                        ])
+                      ],
+                    ),
+                    SizedBox(height: 20.83),
+                    Container(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("66 Likes", style: Themes.fontOpenSans8),
-                                  VerticalDivider(
-                                      indent: 1,
-                                      endIndent: 7,
-                                      color: Color(0xFF4C4C4C)),
-                                  Text("60 Komentar",
-                                      style: Themes.fontOpenSans8),
-                                ],
-                              ),
-                              Text(
-                                "18 Agustus",
-                                style: Themes.fontOpenSans8,
-                              ),
+                          Text(
+                            "Bakmi Komplit",
+                            style: Themes.fontMontserrat14600,
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            "Enak banget, gatau lagi, mo beli lagi tapi takut beli mulu. tapi kalo dibayarin kamu",
+                            maxLines: 3,
+                            style: Themes.fontOpenSans12,
+                          ),
+                          SizedBox(height: 20),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("66 Likes", style: Themes.fontOpenSans8),
+                              SizedBox(width: 6.28),
+                              Text("60 Komentar", style: Themes.fontOpenSans8),
                             ],
-                          ))
-                    ]))
+                          ),
+                        ]))
+                  ],
+                ))
           ],
         ));
   }

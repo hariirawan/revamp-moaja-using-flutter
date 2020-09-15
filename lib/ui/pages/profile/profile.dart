@@ -77,22 +77,14 @@ class Profile extends StatelessWidget {
               ],
             )),
         Divider(),
-        InkWell(
-          onTap: () {
-            Navigator.pushNamed(context, '/my-review');
-          },
-          child: ItemList(
-            title: "Ulasanku",
-            itemCount: "12",
-          ),
-        ),
-        ItemList(
-          title: "Ulasan Favorit",
-          itemCount: "12",
-        ),
-        ItemList(
-          title: "Ajak Teman Pakai MoAja",
-        ),
+        buildInkWell(context,
+            navigate: Review(), title: "Ulasanku", itemCount: "12"),
+        buildInkWell(context,
+            navigate: ReviewFavorite(),
+            title: "Ulasan Favorite",
+            itemCount: "12"),
+        buildInkWell(context,
+            navigate: InviteFriends(), title: "Ajak Teman Pakai MoAja"),
         ItemList(
           title: "Kebijakan Privasi",
         ),
@@ -118,6 +110,19 @@ class Profile extends StatelessWidget {
             ))
       ]),
     );
+  }
+
+  InkWell buildInkWell(BuildContext context,
+      {Widget navigate, String title, String itemCount}) {
+    return InkWell(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute<dynamic>(builder: (context) => navigate));
+        },
+        child: ItemList(
+          title: title,
+          itemCount: itemCount,
+        ));
   }
 }
 
