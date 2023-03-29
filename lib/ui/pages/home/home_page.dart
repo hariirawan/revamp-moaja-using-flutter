@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context)?.size.width;
 
     return ListView(
       padding: EdgeInsets.all(0.0),
@@ -339,7 +339,7 @@ class _HomePageState extends State<HomePage> {
 
     return Container(
         height: 210,
-        width: MediaQuery.of(context).size.width - 20 - 20,
+        width: MediaQuery.of(context)?.size.width - 20 - 20,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
           itemCount: data.length,

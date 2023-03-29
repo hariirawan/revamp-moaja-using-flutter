@@ -13,7 +13,7 @@ class CardNews extends StatelessWidget {
         children: [
           Container(
             height: 135,
-            width: MediaQuery.of(context).size.width - 20 - 20,
+            width: MediaQuery.of(context)?.size.width - 20 - 20,
             margin: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
@@ -31,7 +31,7 @@ class CardNews extends StatelessWidget {
                       .copyWith(fontSize: 12, letterSpacing: 0.2),
                 ),
                 Container(
-                    width: MediaQuery.of(context).size.width - 20 - 20,
+                    width: MediaQuery.of(context)?.size.width - 20 - 20,
                     margin: EdgeInsets.only(top: 6),
                     child: Text(
                       "Presiden Joko Widodo atau Jokowi enganugerahkan tanda jasa dan tanda kehormatan kepada 53 tokoh...",

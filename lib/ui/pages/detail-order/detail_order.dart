@@ -100,7 +100,8 @@ class DetailItem extends StatelessWidget {
           PaymentDetails(),
           SizedBox(height: 30),
           Container(
-            width: MediaQuery.of(context).size.width - Themes.marginDefault * 2,
+            width:
+                MediaQuery.of(context)?.size.width - Themes.marginDefault * 2,
             padding: EdgeInsets.symmetric(vertical: 14),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
@@ -145,14 +146,14 @@ class DetailItem extends StatelessWidget {
                 "Batas Waktu Pembayaran",
                 style: Themes.fontOpenSans11,
               ),
-              Badge(
-                label: Text(
-                  "Menunggu",
-                  style: Themes.fontOpenSans
-                      .copyWith(fontSize: 9, color: Colors.white),
-                ),
-                color: Color(0xFFF97A1F),
-              )
+              // Badge(
+              //   label: Text(
+              //     "Menunggu",
+              //     style: Themes.fontOpenSans
+              //         .copyWith(fontSize: 9, color: Colors.white),
+              //   ),
+              //   color: Color(0xFFF97A1F),
+              // )
             ],
           ),
           SizedBox(height: 9),
@@ -303,7 +304,7 @@ class DetailItem extends StatelessWidget {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height - 100,
+                height: MediaQuery.of(context)?.size.height - 100,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(
@@ -321,7 +322,7 @@ class DetailItem extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
                         Container(
-                          height: MediaQuery.of(context).size.height - 100,
+                          height: MediaQuery.of(context)?.size.height - 100,
                           child: ListView(children: [
                             Padding(
                               padding: EdgeInsets.symmetric(
@@ -421,7 +422,7 @@ class DetailItem extends StatelessWidget {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context)?.size.height / 2,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(
@@ -439,7 +440,7 @@ class DetailItem extends StatelessWidget {
                               .copyWith(fontWeight: FontWeight.w600),
                         ),
                         Container(
-                            height: MediaQuery.of(context).size.height / 2,
+                            height: MediaQuery.of(context)?.size.height / 2,
                             child: ListView(children: [
                               Padding(
                                 padding: EdgeInsets.symmetric(
@@ -487,8 +488,8 @@ class ListItem extends StatelessWidget {
             ),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 16),
-              child: generateDashedDividerH(
-                  MediaQuery.of(context).size.width - 2 * Themes.marginDefault),
+              child: generateDashedDividerH(MediaQuery.of(context)?.size.width -
+                  2 * Themes.marginDefault),
             ),
             SizedBox(
               height: 20,
@@ -551,7 +552,7 @@ class SelectItem extends StatelessWidget {
                   style: Themes.fontMontserrat
                       .copyWith(fontSize: 12, fontWeight: FontWeight.w600)),
               Container(
-                  width: MediaQuery.of(context).size.width -
+                  width: MediaQuery.of(context)?.size.width -
                       Themes.marginDefault * 2 -
                       17 -
                       55,

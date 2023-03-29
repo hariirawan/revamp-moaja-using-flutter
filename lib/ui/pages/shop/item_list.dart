@@ -34,20 +34,20 @@ class _ItemListState extends State<ItemList>
 
   @override
   Widget build(BuildContext context) {
-    double _screenHeight = MediaQuery.of(context).size.height;
+    double _screenHeight = MediaQuery.of(context)?.size.height;
 
     return Scaffold(
         body: SizedBox.expand(
       child: Stack(children: [
         Container(
-          width: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context)?.size.width,
           height: _imageHeight,
           child: Stack(
             fit: StackFit.expand,
             children: [
               Image(
                 height: _imageHeight,
-                width: MediaQuery.of(context).size.width,
+                width: MediaQuery.of(context)?.size.width,
                 image: AssetImage("assets/images/bg_detail2.png"),
                 fit: BoxFit.cover,
               ),
@@ -221,8 +221,8 @@ class _ItemListState extends State<ItemList>
                                     color: Color(0xFFD8D8D8),
                                     borderRadius: BorderRadius.circular(40))),
                             Container(
-                                width: MediaQuery.of(context).size.width,
-                                height: MediaQuery.of(context).size.height,
+                                width: MediaQuery.of(context)?.size.width,
+                                height: MediaQuery.of(context)?.size.height,
                                 child: Stack(children: [
                                   ListView(
                                       padding: EdgeInsets.only(top: 0),
@@ -256,7 +256,7 @@ class _ItemListState extends State<ItemList>
                                           itemProvider.itemCheckout.length > 0
                                               ? 130
                                               : -150,
-                                      left: MediaQuery.of(context).size.width *
+                                      left: MediaQuery.of(context)?.size.width *
                                           0.04,
                                       duration: Duration(milliseconds: 450),
                                       child: GestureDetector(
@@ -337,7 +337,7 @@ class _ItemListState extends State<ItemList>
 
   Widget cardItem(BuildContext context, ModelListItem data, int index) {
     double widthItemRight =
-        MediaQuery.of(context).size.width - 17 - 80 - Themes.marginDefault * 2;
+        MediaQuery.of(context)?.size.width - 17 - 80 - Themes.marginDefault * 2;
 
     var provider = Provider.of<ListItemProvider>(context);
 
@@ -374,7 +374,7 @@ class _ItemListState extends State<ItemList>
                             fontSize: 12, fontWeight: FontWeight.w600),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width / 1.75,
+                        width: MediaQuery.of(context)?.size.width / 1.75,
                         child: Text(
                           data.desc,
                           maxLines: 3,

@@ -32,7 +32,7 @@ class _CourierTrackState extends State<CourierTrack>
           fit: StackFit.expand,
           children: [
             Image(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery.of(context)?.size.width,
               image: AssetImage("assets/images/bg_detail2.png"),
               fit: BoxFit.cover,
             ),
@@ -44,7 +44,7 @@ class _CourierTrackState extends State<CourierTrack>
             maxChildSize: initialSize,
             builder: (context, scrollController) {
               return Container(
-                height: MediaQuery.of(context).size.height * initialSize,
+                height: MediaQuery.of(context)?.size.height * initialSize,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
@@ -58,19 +58,19 @@ class _CourierTrackState extends State<CourierTrack>
                         duration: Duration(milliseconds: 500),
                         right: 0,
                         child: Container(
-                            height: MediaQuery.of(context).size.height *
+                            height: MediaQuery.of(context)?.size.height *
                                 initialSize,
                             child: SingleChildScrollView(
                               controller: scrollController,
                               child: Column(
                                 children: [
                                   Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width: MediaQuery.of(context)?.size.width,
                                       padding: EdgeInsets.symmetric(
                                           horizontal:
                                               Themes.marginDefault + 10.37),
                                       height:
-                                          MediaQuery.of(context).size.height *
+                                          MediaQuery.of(context)?.size.height *
                                                   initialSize -
                                               109.04,
                                       decoration: BoxDecoration(
@@ -95,7 +95,7 @@ class _CourierTrackState extends State<CourierTrack>
                                               StepIndicator(this._currentStep),
                                         ),
                                         generateDashedDividerH(
-                                            MediaQuery.of(context).size.width -
+                                            MediaQuery.of(context)?.size.width -
                                                 (Themes.marginDefault * 2 +
                                                     10.37 * 2)),
                                         SizedBox(height: 20),
@@ -222,8 +222,9 @@ class InfoCourier extends StatelessWidget {
                 children: [
                   Container(
                     height: 60.0,
-                    width: MediaQuery.of(context).size.width * initalWidthSize -
-                        10,
+                    width:
+                        MediaQuery.of(context)?.size.width * initalWidthSize -
+                            10,
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -238,7 +239,7 @@ class InfoCourier extends StatelessWidget {
                                     fit: BoxFit.cover))),
                         SizedBox(width: 7.7),
                         Container(
-                            width: MediaQuery.of(context).size.width *
+                            width: MediaQuery.of(context)?.size.width *
                                     initalWidthSize -
                                 10 -
                                 60.0 -
@@ -294,10 +295,11 @@ class InfoCourier extends StatelessWidget {
                   Container(height: 60, child: generateDashedDividerV(60)),
                   Container(
                     height: 60.0,
-                    width: MediaQuery.of(context).size.width * initalWidthSize -
-                        10 -
-                        Themes.marginDefault * 2 -
-                        7.7,
+                    width:
+                        MediaQuery.of(context)?.size.width * initalWidthSize -
+                            10 -
+                            Themes.marginDefault * 2 -
+                            7.7,
                     child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,

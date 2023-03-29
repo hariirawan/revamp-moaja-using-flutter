@@ -79,7 +79,7 @@ class CardMyReview extends StatelessWidget {
             ),
             SizedBox(width: 20),
             Container(
-                width: MediaQuery.of(context).size.width -
+                width: MediaQuery.of(context)?.size.width -
                     (Themes.marginDefault * 2 + 100),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

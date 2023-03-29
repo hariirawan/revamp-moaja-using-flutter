@@ -57,64 +57,64 @@ class _LayoutState extends State<Layout> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: Image.asset(
-                    _selectedIndex == 0
-                        ? 'assets/icons/icon-navigation/Home.png'
-                        : 'assets/icons/icon-navigation/Home-grey.png',
-                    scale: 4,
-                  )),
-              title: Text(
-                "Beranda",
-                style: TextStyle(
-                    color:
-                        _selectedIndex == 0 ? Themes.green : Color(0xFFBDBDBD)),
-              )),
-          BottomNavigationBarItem(
-              icon: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: Image.asset(
-                    _selectedIndex == 1
-                        ? 'assets/icons/icon-navigation/Document.png'
-                        : 'assets/icons/icon-navigation/Document-grey.png',
-                    scale: 4,
-                  )),
-              title: Text("Aktifitas",
-                  style: TextStyle(
-                      color: _selectedIndex == 1
-                          ? Themes.green
-                          : Color(0xFFBDBDBD)))),
-          BottomNavigationBarItem(
-              icon: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: Image.asset(
-                    _selectedIndex == 2
-                        ? 'assets/icons/icon-navigation/Group.png'
-                        : 'assets/icons/icon-navigation/Group-grey.png',
-                    scale: 4,
-                  )),
-              title: Text("Keranjang",
-                  style: TextStyle(
-                      color: _selectedIndex == 2
-                          ? Themes.green
-                          : Color(0xFFBDBDBD)))),
-          BottomNavigationBarItem(
-              icon: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5.0),
-                  child: Image.asset(
-                    _selectedIndex == 3
-                        ? 'assets/icons/icon-navigation/Profile.png'
-                        : 'assets/icons/icon-navigation/Profile-grey.png',
-                    scale: 4,
-                  )),
-              title: Text(
-                "Profile",
-                style: TextStyle(
-                    color:
-                        _selectedIndex == 3 ? Themes.green : Color(0xFFBDBDBD)),
-              )),
+          // BottomNavigationBarItem(
+          //     icon: Padding(
+          //         padding: EdgeInsets.symmetric(vertical: 5.0),
+          //         child: Image.asset(
+          //           _selectedIndex == 0
+          //               ? 'assets/icons/icon-navigation/Home.png'
+          //               : 'assets/icons/icon-navigation/Home-grey.png',
+          //           scale: 4,
+          //         )),
+          //     title: Text(
+          //       "Beranda",
+          //       style: TextStyle(
+          //           color:
+          //               _selectedIndex == 0 ? Themes.green : Color(0xFFBDBDBD)),
+          //     )),
+          // BottomNavigationBarItem(
+          //     icon: Padding(
+          //         padding: EdgeInsets.symmetric(vertical: 5.0),
+          //         child: Image.asset(
+          //           _selectedIndex == 1
+          //               ? 'assets/icons/icon-navigation/Document.png'
+          //               : 'assets/icons/icon-navigation/Document-grey.png',
+          //           scale: 4,
+          //         )),
+          //     title: Text("Aktifitas",
+          //         style: TextStyle(
+          //             color: _selectedIndex == 1
+          //                 ? Themes.green
+          //                 : Color(0xFFBDBDBD)))),
+          // BottomNavigationBarItem(
+          //     icon: Padding(
+          //         padding: EdgeInsets.symmetric(vertical: 5.0),
+          //         child: Image.asset(
+          //           _selectedIndex == 2
+          //               ? 'assets/icons/icon-navigation/Group.png'
+          //               : 'assets/icons/icon-navigation/Group-grey.png',
+          //           scale: 4,
+          //         )),
+          //     title: Text("Keranjang",
+          //         style: TextStyle(
+          //             color: _selectedIndex == 2
+          //                 ? Themes.green
+          //                 : Color(0xFFBDBDBD)))),
+          // BottomNavigationBarItem(
+          //     icon: Padding(
+          //         padding: EdgeInsets.symmetric(vertical: 5.0),
+          //         child: Image.asset(
+          //           _selectedIndex == 3
+          //               ? 'assets/icons/icon-navigation/Profile.png'
+          //               : 'assets/icons/icon-navigation/Profile-grey.png',
+          //           scale: 4,
+          //         )),
+          //     title: Text(
+          //       "Profile",
+          //       style: TextStyle(
+          //           color:
+          //               _selectedIndex == 3 ? Themes.green : Color(0xFFBDBDBD)),
+          //     )),
         ],
         currentIndex: _selectedIndex,
         onTap: _onTabItem,

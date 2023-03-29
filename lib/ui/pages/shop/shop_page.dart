@@ -58,7 +58,7 @@ class _ShopPageState extends State<ShopPage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context)?.size.width;
 
     print(upArrowFloating);
     return SafeArea(
@@ -246,7 +246,7 @@ class _ShopPageState extends State<ShopPage> {
   Widget shoppingRecomendations(BuildContext context) {
     return Container(
         height: 210,
-        width: MediaQuery.of(context).size.width - 20 - 20,
+        width: MediaQuery.of(context)?.size.width - 20 - 20,
         child: Carousel(
             children: CardNews(
           image: "assets/images/bg_card.png",
@@ -312,7 +312,7 @@ class _ShopPageState extends State<ShopPage> {
   }
 
   Widget bannerSlide(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context)?.size.width;
 
     return Column(children: [
       SizedBox(

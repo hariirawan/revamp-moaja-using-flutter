@@ -28,7 +28,7 @@ class CardNeeds extends StatelessWidget {
                 child: Stack(children: [
                   Container(
                     height: 128,
-                    width: MediaQuery.of(context).size.width -
+                    width: MediaQuery.of(context)?.size.width -
                         Themes.marginDefault * 2,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8),
@@ -39,7 +39,7 @@ class CardNeeds extends StatelessWidget {
                       ? SizedBox()
                       : Container(
                           height: 128,
-                          width: MediaQuery.of(context).size.width -
+                          width: MediaQuery.of(context)?.size.width -
                               Themes.marginDefault * 2,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(8),

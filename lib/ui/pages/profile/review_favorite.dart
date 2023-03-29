@@ -42,7 +42,7 @@ class ReviewFavorite extends StatelessWidget {
 class CardReviewFavorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context)?.size.width;
 
     return Container(
         margin: EdgeInsets.symmetric(

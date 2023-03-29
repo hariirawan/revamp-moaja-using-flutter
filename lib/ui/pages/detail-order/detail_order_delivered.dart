@@ -24,7 +24,8 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
                 top: Themes.marginDefault,
                 left: Themes.marginDefault,
                 right: Themes.marginDefault),
-            width: MediaQuery.of(context).size.width - Themes.marginDefault * 2,
+            width:
+                MediaQuery.of(context)?.size.width - Themes.marginDefault * 2,
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Container(
@@ -44,7 +45,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
                         children: [
                           Icon(Icons.location_on),
                           Container(
-                              width: MediaQuery.of(context).size.width - 150,
+                              width: MediaQuery.of(context)?.size.width - 150,
                               child: Text(
                                   "Jl. Kuningan Barat No 1, Mampang Prapatan")),
                           Spacer(),
@@ -74,7 +75,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
           child: Container(
             padding: EdgeInsets.all(16),
             height: 90,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context)?.size.width,
             decoration: BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
                   color: Colors.grey[300],
@@ -112,7 +113,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height / 2 + 50,
+                height: MediaQuery.of(context)?.size.height / 2 + 50,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(
@@ -184,7 +185,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context)?.size.height / 2,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(
@@ -247,7 +248,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height / 2,
+                height: MediaQuery.of(context)?.size.height / 2,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: Container(
@@ -330,7 +331,7 @@ class _DetailOrderDeliveredState extends State<DetailOrderDelivered> {
           return Consumer<PaymentProvider>(
             builder: (context, payment, _) {
               return Container(
-                height: MediaQuery.of(context).size.height * 0.8,
+                height: MediaQuery.of(context)?.size.height * 0.8,
                 child: SingleChildScrollView(
                     physics: NeverScrollableScrollPhysics(),
                     child: ListReason()),
@@ -372,7 +373,7 @@ class _ListReasonState extends State<ListReason> {
                   color: Color(0xFFD8D8D8),
                   borderRadius: BorderRadius.circular(40))),
           Container(
-              height: MediaQuery.of(context).size.height,
+              height: MediaQuery.of(context)?.size.height,
               child: ListView(children: [
                 SizedBox(height: 51),
                 Column(children: [

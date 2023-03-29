@@ -6,7 +6,6 @@ import 'package:mo_aja/shared/_shared.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 part 'atoms/button.dart';
-part 'atoms/badge.dart';
 part 'atoms/container_shadow.dart';
 part 'atoms/counting_down.dart';
 

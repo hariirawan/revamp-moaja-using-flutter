@@ -191,7 +191,7 @@ class Profile extends StatelessWidget {
         ),
         builder: (context) {
           return Container(
-            height: MediaQuery.of(context).size.height * 0.3,
+            height: MediaQuery.of(context)?.size.height * 0.3,
             child: SingleChildScrollView(
                 physics: NeverScrollableScrollPhysics(),
                 child: Container(

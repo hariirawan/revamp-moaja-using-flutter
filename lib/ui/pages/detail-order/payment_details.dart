@@ -14,7 +14,7 @@ class PaymentDetails extends StatelessWidget {
         Container(
           margin: EdgeInsets.only(top: 10, bottom: 16),
           child: generateDashedDividerH(
-              MediaQuery.of(context).size.width - 2 * Themes.marginDefault),
+              MediaQuery.of(context)?.size.width - 2 * Themes.marginDefault),
         ),
         SizedBox(
           height: 20,

@@ -8,7 +8,7 @@ class ContainerShadow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         padding: EdgeInsets.symmetric(horizontal: 14, vertical: 18),
-        width: MediaQuery.of(context).size.width,
+        width: MediaQuery.of(context)?.size.width,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             color: Colors.white,

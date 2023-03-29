@@ -17,7 +17,7 @@ class _BannerSlideState extends State<BannerSlide> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context)?.size.width;
 
     return Column(children: [
       Container(
